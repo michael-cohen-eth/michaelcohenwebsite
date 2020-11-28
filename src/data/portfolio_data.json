@@ -1,0 +1,73 @@
+{
+  "data": {
+    "head": {
+      "title": "Michael Cohen | Software Engineer",
+      "lang": "en",
+      "description": "Michael Cohen's Portfolio"
+    },
+    "hero": {
+      "title": "Hello, my name is",
+      "name": "Michael Cohen",
+      "subtitle": "I'm a Software Developer",
+      "cta": ""
+    },
+    "about": {
+      "img": "profile.png",
+      "paragraphOne": "",
+      "paragraphTwo": "",
+      "paragraphThree": "",
+      "resume": "https://www.resumemaker.online/es.php"
+    },
+    "projects": [
+      {
+        "id": "0",
+        "img": "project.jpg",
+        "title": "",
+        "info": "",
+        "info2": "",
+        "url": "",
+        "repo": "https://github.com/cobidev/react-simplefolio"
+      },
+      {
+        "id": "1",
+        "img": "project.jpg",
+        "title": "",
+        "info": "",
+        "info2": "",
+        "url": "",
+        "repo": "https://github.com/cobidev/react-simplefolio"
+      },
+      {
+        "id": "2",
+        "img": "project.jpg",
+        "title": "",
+        "info": "",
+        "info2": "",
+        "url": "",
+        "repo": "https://github.com/cobidev/react-simplefolio"
+      }
+    ],
+    "contact": {
+      "cta": "",
+      "btn": "",
+      "email": ""
+    },
+    "footer": {
+      "networks": [
+        {
+          "id": "0",
+          "name": "twitter",
+          "url": ""
+        },
+        {
+          "id": "1",
+          "name": "linkedin",
+          "url": ""
+        }
+      ]
+    },
+    "githubButtons": {
+      "isEnabled": false
+    }
+  }
+}

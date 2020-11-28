@@ -1,0 +1,45 @@
+.navbar .navbar-item {
+  // display: flex;
+  list-style: none;
+}
+
+h1.navbar-item {
+  font-size: 0.5rem;
+}
+
+.navbar {
+  background: $white-color;
+  display: flex;
+  // justify-content: right;
+  padding-top: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  // width: 60%;
+  right: 0;
+}
+
+.navbar-sticky {
+  background: $white-color;
+  position: fixed;
+  top: 0;
+  right: 0;
+  box-shadow: 1px 1px 5px #222;
+  animation: moveDown 0.5s ease-in-out;
+}
+
+.navbar-container {
+  background: $white-color;
+  // display: flex;
+  overflow: hidden;
+  height: fit-content;
+  // padding-left: 10%;
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
+  }
+}

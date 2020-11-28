@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
 import PortfolioContext from '../../context/context';
 
-const Header = () => {
+const Header = ({ element }) => {
   const { hero } = useContext(PortfolioContext);
   const { title, name, subtitle, cta } = hero;
 
@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <section id="hero" className="jumbotron">
-      <Container>
+      <Container ref={element}>
         <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={500} distance="30px">
           <h1 className="hero-title">
             {title || 'Hi, my name is'}{' '}

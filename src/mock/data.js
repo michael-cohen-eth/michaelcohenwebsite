@@ -2,16 +2,16 @@ import { nanoid } from 'nanoid';
 
 // HEAD DATA
 export const headData = {
-  title: '', // e.g: 'Name | Developer'
-  lang: '', // e.g: en, es, fr, jp
-  description: '', // e.g: Welcome to my website
+  title: 'Michael Cohen | Software Engineer', // e.g: 'Name | Developer'
+  lang: 'en', // e.g: en, es, fr, jp
+  description: "Michael Cohen's Portfolio", // e.g: Welcome to my website
 };
 
 // HERO DATA
 export const heroData = {
-  title: '',
-  name: '',
-  subtitle: '',
+  title: 'Hello, my name is',
+  name: 'Michael Cohen',
+  subtitle: "I'm a Software Developer",
   cta: '',
 };
 
@@ -90,5 +90,5 @@ export const footerData = {
 
 // Github start/fork buttons
 export const githubButtons = {
-  isEnabled: true, // set to false to disable the GitHub stars/fork buttons
+  isEnabled: false, // set to false to disable the GitHub stars/fork buttons
 };

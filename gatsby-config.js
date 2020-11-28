@@ -5,6 +5,8 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-offline`,
+    `gatsby-plugin-slug`,
+    `gatsby-transformer-json`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -17,6 +19,12 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/`,
       },
     },
     {
