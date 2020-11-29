@@ -5,5 +5,11 @@
   "tabWidth": 2,
   "semi": true,
   "singleQuote": true,
-  "jsxSingleQuote": false
+  "jsxSingleQuote": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true,
+    "source.fixAll.stylelint": true
+  }
 }

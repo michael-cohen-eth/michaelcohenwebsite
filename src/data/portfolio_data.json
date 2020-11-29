@@ -1,20 +1,25 @@
 {
   "data": {
+    "navigation": {
+      "logo": "logo.png",
+      "navigation_items": ["home", "about", "work", "projects", "skills"]
+    },
     "head": {
       "title": "Michael Cohen | Software Engineer",
       "lang": "en",
       "description": "Michael Cohen's Portfolio"
     },
     "hero": {
-      "title": "Hello, my name is",
+      "title": "hello, world.",
+      "subtitle1": "my name is ",
       "name": "Michael Cohen",
-      "subtitle": "I'm a Software Developer",
-      "cta": ""
+      "subtitle2": "I'm a software developer.",
+      "cta": "about me"
     },
     "about": {
       "img": "profile.png",
-      "paragraphOne": "",
-      "paragraphTwo": "",
+      "paragraphOne": "I'm a software developer for Amazon, currently working on the Amazon Live FireTV team.",
+      "paragraphTwo": "I went to the University of Florida, where I majored in Computer Science and Entrepreneurship. I've been coding and tinkering with computers since I was 8 years old.",
       "paragraphThree": "",
       "resume": "https://www.resumemaker.online/es.php"
     },

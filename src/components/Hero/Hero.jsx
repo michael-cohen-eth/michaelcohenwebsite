@@ -2,15 +2,17 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
+import Typist from 'react-typist';
+
 import PortfolioContext from '../../context/context';
 
-const Header = ({ element }) => {
+const Header = ({ stickyAnchor }) => {
   const { hero } = useContext(PortfolioContext);
-  const { title, name, subtitle, cta } = hero;
+  const { title, name, subtitle1, subtitle2, cta } = hero;
 
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [typistKey, setTypistKey] = useState('');
   useEffect(() => {
     if (window.innerWidth > 769) {
       setIsDesktop(true);
@@ -19,29 +21,33 @@ const Header = ({ element }) => {
       setIsMobile(true);
       setIsDesktop(false);
     }
+    setTypistKey('typistKey');
   }, []);
 
   return (
     <section id="hero" className="jumbotron">
-      <Container ref={element}>
-        <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={500} distance="30px">
-          <h1 className="hero-title">
-            {title || 'Hi, my name is'}{' '}
-            <span className="text-color-main">{name || 'Your Name'}</span>
+      <Container>
+        <Typist left={isDesktop} bottom={isMobile} key={typistKey} cursor={{ show: false }}>
+          <h1 className="hero-title">{title}</h1>
+          <h2 className="hero-title">
+            <Typist.Delay ms={500} />
+            {subtitle1} <span className="text-color-main">{name}</span>.
             <br />
-            {subtitle || "I'm the Unknown Developer."}
-          </h1>
-        </Fade>
-        <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={1000} distance="30px">
+            <Typist.Delay ms={500} />
+            {subtitle2}
+          </h2>
+        </Typist>
+        <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={6000} distance="30px">
           <p className="hero-cta">
             <span className="cta-btn cta-btn--hero">
-              <Link to="about" smooth duration={1000}>
-                {cta || 'Know more'}
+              <Link to="about" smooth duration={1000} offset={-70}>
+                {cta}
               </Link>
             </span>
           </p>
         </Fade>
       </Container>
+      <Container ref={stickyAnchor} />
     </section>
   );
 };

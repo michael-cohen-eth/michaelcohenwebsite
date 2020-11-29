@@ -2,13 +2,12 @@ import { useEffect, useState, useRef } from 'react';
 
 function useSticky() {
   const [isSticky, setSticky] = useState(false);
-  const element = useRef(null);
+  const stickyAnchor = useRef(null);
 
   const handleScroll = () => {
-    setSticky(true);
-    // window.scrollY > element.current.getBoundingClientRect().bottom
-    //   ? setSticky(true)
-    //   : setSticky(false);
+    window.scrollY > stickyAnchor.current.getBoundingClientRect().bottom
+      ? setSticky(true)
+      : setSticky(false);
   };
 
   // This function handles the scroll performance issue
@@ -29,13 +28,13 @@ function useSticky() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', debounce(handleScroll));
+    window.addEventListener('scroll', debounce(handleScroll, 5));
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
   }, [debounce, handleScroll]);
 
-  return { isSticky, element };
+  return { isSticky, stickyAnchor };
 }
 
 export default useSticky;

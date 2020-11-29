@@ -28,6 +28,10 @@ export const query = graphql`
       edges {
         node {
           data {
+            navigation {
+              logo
+              navigation_items
+            }
             about {
               img
               paragraphOne
@@ -67,7 +71,8 @@ export const query = graphql`
             hero {
               cta
               name
-              subtitle
+              subtitle1
+              subtitle2
               title
             }
           }
