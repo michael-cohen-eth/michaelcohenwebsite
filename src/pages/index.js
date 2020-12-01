@@ -30,7 +30,7 @@ export const query = graphql`
           data {
             navigation {
               logo
-              navigation_items
+              navigationItems
             }
             about {
               img

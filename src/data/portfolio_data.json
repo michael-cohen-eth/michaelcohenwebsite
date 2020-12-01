@@ -2,7 +2,7 @@
   "data": {
     "navigation": {
       "logo": "logo.png",
-      "navigation_items": ["home", "about", "work", "projects", "skills"]
+      "navigationItems": ["home", "about", "work", "projects", "skills"]
     },
     "head": {
       "title": "Michael Cohen | Software Engineer",
@@ -10,8 +10,8 @@
       "description": "Michael Cohen's Portfolio"
     },
     "hero": {
-      "title": "hello, world.",
-      "subtitle1": "my name is ",
+      "title": "hello, world",
+      "subtitle1": "My name is ",
       "name": "Michael Cohen",
       "subtitle2": "I'm a software developer.",
       "cta": "about me"

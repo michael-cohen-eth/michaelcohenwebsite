@@ -1,14 +1,15 @@
 import React from 'react';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
 import LogoImg from '../Image/LogoImg';
 
-//TODO: get name from data source
-const Navigation = ({ navigationData, sticky }) => {
-  const { navigation_items, logo } = navigationData;
+// TODO: get name from data source
+const Navigation = ({ navigationData, sticky = false }) => {
+  const { navigationItems, logo } = navigationData;
 
   const navPrefix = 'nav-item-';
-  const listBuilder = navigation_items.map((headerText) => (
+  const listBuilder = navigationItems.map((headerText) => (
     <li className="nav-item col" key={`${navPrefix}${headerText}`}>
       <Link
         to={headerText}
@@ -32,21 +33,25 @@ const Navigation = ({ navigationData, sticky }) => {
       className={sticky ? 'navbar navbar-sticky' : 'navbar'}
       defaultExpanded={false}
     >
-      <Container>
-        <li className="navbar nav-link" key={`${navPrefix}logo`}>
-          <Link to="home" duration={1000} smooth spy>
-            <LogoImg className="ml-auto" alt="Michael Cohen" filename={logo} />
-          </Link>
-        </li>
-      </Container>
-      <Container>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto">{listBuilder}</Nav>
-        </Navbar.Collapse>
-      </Container>
+      <li className="navbar nav-link" key={`${navPrefix}logo`}>
+        <Link to="home" duration={1000} smooth spy>
+          <LogoImg className="ml-auto" alt="Michael Cohen" filename={logo} />
+        </Link>
+      </li>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+        <Nav className="ml-auto">{listBuilder}</Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
+};
+
+Navigation.propTypes = {
+  navigationData: PropTypes.shape({
+    navigationItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+    logo: PropTypes.string.isRequired,
+  }).isRequired,
+  sticky: PropTypes.bool,
 };
 
 export default Navigation;

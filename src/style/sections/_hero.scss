@@ -26,7 +26,7 @@
   }
 
   .hero-title {
-    font-size: 5rem;
+    font-size: 6rem;
     font-weight: 700;
     text-align: left;
     flex-grow: 4;
@@ -36,7 +36,6 @@
     }
     @include respond(tab-port) {
       font-size: 3.6rem;
-      text-align: center;
     }
     @include respond(phone) {
       font-size: 3.5rem;
@@ -48,10 +47,39 @@
   }
 
   h2.hero-title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 500;
     margin-bottom: 3.2rem;
+    
+    @include respond(tab-land) {
+      font-size: 2rem;
+    }
+    @include respond(tab-port) {
+      font-size: 1.2rem;
+    }
+    @include respond(phone) {
+      font-size: 2rem;
+      line-height: 1.5;
+    }
+    @include respond(phone-xs) {
+      font-size: 2rem;
+    }
   }
+
+  .text-color-main-hero {
+    color: $primary-color;
+
+  // Responsive text purple style
+  @include respond(phone) {
+    background-image: none;
+    -webkit-text-fill-color: $secondary-color;
+  }
+
+  &:hover {
+    transform: translateX(2px);
+  }
+}
+
 
   .hero-cta {
     display: flex;

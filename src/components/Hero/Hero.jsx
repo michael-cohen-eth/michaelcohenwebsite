@@ -1,55 +1,215 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Row } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
-import Typist from 'react-typist';
+import Typing, { Cursor } from 'react-typing-animation';
 
-import PortfolioContext from '../../context/context';
+import { PortfolioConsumer } from '../../context/context';
 
-const Header = ({ stickyAnchor }) => {
-  const { hero } = useContext(PortfolioContext);
-  const { title, name, subtitle1, subtitle2, cta } = hero;
-
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [typistKey, setTypistKey] = useState('');
-  useEffect(() => {
-    if (window.innerWidth > 769) {
-      setIsDesktop(true);
-      setIsMobile(false);
-    } else {
-      setIsMobile(true);
-      setIsDesktop(false);
-    }
-    setTypistKey('typistKey');
-  }, []);
-
+const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingDone, cursor }) => {
+  let greeting;
+  if (typingKey.length === 0 || greetingSubject.length === 0) {
+    greeting = '.';
+  } else {
+    greeting = (
+      <>
+        <span className="text-color-main-hero">
+          <Typing.Delay ms={200} />
+          <Typing.Backspace count={5} />
+          {greetingSubject}
+        </span>
+        .
+      </>
+    );
+  }
   return (
-    <section id="hero" className="jumbotron">
-      <Container>
-        <Typist left={isDesktop} bottom={isMobile} key={typistKey} cursor={{ show: false }}>
-          <h1 className="hero-title">{title}</h1>
-          <h2 className="hero-title">
-            <Typist.Delay ms={500} />
-            {subtitle1} <span className="text-color-main">{name}</span>.
-            <br />
-            <Typist.Delay ms={500} />
-            {subtitle2}
-          </h2>
-        </Typist>
-        <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={6000} distance="30px">
-          <p className="hero-cta">
-            <span className="cta-btn cta-btn--hero">
-              <Link to="about" smooth duration={1000} offset={-70}>
-                {cta}
-              </Link>
-            </span>
-          </p>
-        </Fade>
-      </Container>
-      <Container ref={stickyAnchor} />
-    </section>
+    <Typing
+      key={typingKey}
+      onFinishedTyping={onTypingDone}
+      cursor={cursor}
+      hideCursor={false}
+      speed={15}
+    >
+      <h1 className="hero-title">
+        {originalGreeting}
+        {greeting}
+      </h1>
+    </Typing>
   );
 };
 
-export default Header;
+Greeting.propTypes = {
+  originalGreeting: PropTypes.string.isRequired,
+  typingKey: PropTypes.string.isRequired,
+  greetingSubject: PropTypes.string,
+  onTypingDone: PropTypes.func.isRequired,
+  cursor: PropTypes.node.isRequired,
+};
+
+class Hero extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // let greetingSubject = '';
+    const { search } = window.location;
+    const params = new URLSearchParams(search);
+    const greetingSubject = params.get('greet') ? params.get('greet') : '';
+
+    let isDesktop = false;
+    let isMobile = false;
+    if (window.innerWidth > 769) {
+      isDesktop = true;
+      isMobile = false;
+    } else {
+      isDesktop = false;
+      isMobile = true;
+    }
+
+    this.state = {
+      isDesktop,
+      isMobile,
+      typingKey: '',
+      typingDone: false,
+      headerTypingDone: false,
+      greetingSubject,
+    };
+  }
+
+  componentDidMount() {
+    // This is required to properly render the typing animation
+    this.setState({
+      typingKey: 'typingKey',
+    });
+  }
+
+  componentDidUpdate() {
+    if (window.innerWidth > 769) {
+      this.setIsDesktop(true);
+      this.setIsMobile(false);
+    } else {
+      this.setIsDesktop(false);
+      this.setIsMobile(true);
+    }
+  }
+
+  setIsDesktop(newDesktopVal) {
+    const { isDesktop } = this.state;
+    if (isDesktop !== newDesktopVal) {
+      this.setState({
+        isDesktop: newDesktopVal,
+      });
+    }
+  }
+
+  setIsMobile(newMobileVal) {
+    const { isMobile } = this.state;
+    if (isMobile !== newMobileVal) {
+      this.setState({
+        isMobile: newMobileVal,
+      });
+    }
+  }
+
+  setTypingKey(typingKey) {
+    this.setState({
+      typingKey,
+    });
+  }
+
+  setHeaderTypingDone = () => {
+    this.setState({
+      headerTypingDone: true,
+    });
+  };
+
+  onTypingDone = () => {
+    this.setState({
+      typingDone: true,
+    });
+  };
+
+  cursorBuilder = () => <Cursor />;
+
+  render() {
+    const { stickyAnchor } = this.props;
+    const {
+      isDesktop,
+      isMobile,
+      typingKey,
+      typingDone,
+      headerTypingDone,
+      greetingSubject,
+    } = this.state;
+    const cursor = <Cursor />;
+    return (
+      <PortfolioConsumer>
+        {(portfolio) => {
+          const { title, name, subtitle1, subtitle2, cta } = portfolio.hero;
+          return (
+            <section id="hero" className="jumbotron">
+              <Container fluid>
+                <Row>
+                  {typingKey && title && subtitle1 && subtitle2 && (
+                    <Greeting
+                      originalGreeting={title}
+                      typingKey={typingKey}
+                      greetingSubject={greetingSubject}
+                      onTypingDone={this.setHeaderTypingDone}
+                      cursor={cursor}
+                    />
+                  )}
+                </Row>
+                <Row>
+                  {headerTypingDone && subtitle1 && subtitle2 && (
+                    <Typing
+                      left={isDesktop}
+                      bottom={isMobile}
+                      key={`${typingKey}-2`}
+                      onFinishedTyping={this.onTypingDone}
+                      cursor={cursor}
+                      hideCursor={false}
+                      speed={15}
+                    >
+                      <Typing.Delay ms={200} />
+                      <h2 className="hero-title">
+                        {subtitle1} <Typing.Delay ms={200} />
+                        <span className="text-color-main-hero">{name}</span>.
+                        <Typing.Delay ms={200} />
+                        <br />
+                        {subtitle2}
+                      </h2>
+                    </Typing>
+                  )}
+                </Row>{' '}
+                <Row>
+                  <Fade
+                    left={isDesktop}
+                    bottom={isMobile}
+                    duration={1000}
+                    distance="30px"
+                    when={typingDone}
+                  >
+                    <p className="hero-cta">
+                      <span className="cta-btn cta-btn--hero">
+                        <Link to="about" smooth duration={1000} offset={-70}>
+                          {cta}
+                        </Link>
+                      </span>
+                    </p>
+                  </Fade>
+                </Row>
+                <Row ref={stickyAnchor} />
+              </Container>
+            </section>
+          );
+        }}
+      </PortfolioConsumer>
+    );
+  }
+}
+
+Hero.propTypes = {
+  stickyAnchor: PropTypes.string.isRequired,
+};
+export default Hero;
