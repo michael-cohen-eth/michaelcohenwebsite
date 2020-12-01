@@ -50,20 +50,25 @@ Greeting.propTypes = {
 class Hero extends React.Component {
   constructor(props) {
     super(props);
-
-    // let greetingSubject = '';
-    const { search } = window.location;
-    const params = new URLSearchParams(search);
-    const greetingSubject = params.get('greet') ? params.get('greet') : '';
-
-    let isDesktop = false;
-    let isMobile = false;
-    if (window.innerWidth > 769) {
-      isDesktop = true;
-      isMobile = false;
+    let greetingSubject;
+    if (typeof window !== `undefined`) {
+      const { search } = window.location;
+      const params = new URLSearchParams(search);
+      greetingSubject = params.get('greet') ? params.get('greet') : '';
     } else {
-      isDesktop = false;
-      isMobile = true;
+      greetingSubject = '';
+    }
+
+    let isDesktop = true;
+    let isMobile = false;
+    if (typeof window !== `undefined`) {
+      if (window.innerWidth > 769) {
+        isDesktop = true;
+        isMobile = false;
+      } else {
+        isDesktop = false;
+        isMobile = true;
+      }
     }
 
     this.state = {
@@ -84,6 +89,9 @@ class Hero extends React.Component {
   }
 
   componentDidUpdate() {
+    if (typeof window === `undefined`) {
+      return;
+    }
     if (window.innerWidth > 769) {
       this.setIsDesktop(true);
       this.setIsMobile(false);
