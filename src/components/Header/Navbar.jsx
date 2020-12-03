@@ -2,14 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
+import { useFirestoreDocData, useFirestore } from 'reactfire';
 import LogoImg from '../Image/LogoImg';
 
 // TODO: get name from data source
 const Navigation = ({ navigationData, sticky = false }) => {
-  const { navigationItems, logo } = navigationData;
+  const metaRef = useFirestore().collection('portfolio').doc('meta');
+  const { logo, headers } = useFirestoreDocData(metaRef, {
+    initialData: {
+      headers: navigationData.navigationItems,
+      logo: navigationData.logo,
+    },
+  });
 
   const navPrefix = 'nav-item-';
-  const listBuilder = navigationItems.map((headerText) => (
+  const listBuilder = headers.map((headerText) => (
     <li className="nav-item col" key={`${navPrefix}${headerText}`}>
       <Link
         to={headerText}

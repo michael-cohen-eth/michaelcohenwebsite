@@ -1,15 +1,31 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import { FirebaseAppProvider } from 'reactfire';
 import useSticky from '../hooks/useSticky.js';
 import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
 import About from './About/About';
 import Projects from './Projects/Projects';
+import Work from './Work/Work';
 import Contact from './Contact/Contact';
 import Footer from './Footer/Footer';
+import withSuspense from './Utils/withSuspense';
+import 'firebase/database';
 
 import { PortfolioProvider } from '../context/context';
 
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+};
+
+const NavigationWithLoading = withSuspense(Navigation);
 const App = ({ data }) => {
   const [hero, setHero] = useState({});
   const [about, setAbout] = useState({});
@@ -35,16 +51,24 @@ const App = ({ data }) => {
     setFooter({ ...footerData });
   }, []);
 
+  // TODO: Add 'Home' empty component for anchoring
   return (
-    <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
-      <span id="home" />
-      <Navigation navigationData={navigationData} sticky={isSticky} />
-      <Hero stickyAnchor={stickyAnchor} />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
-    </PortfolioProvider>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
+        <span id="home" />
+        <NavigationWithLoading
+          traceId="load-navigation"
+          navigationData={navigationData}
+          sticky={isSticky}
+        />
+        <Hero stickyAnchor={stickyAnchor} />
+        <About />
+        <Work />
+        <Projects />
+        <Contact />
+        <Footer />
+      </PortfolioProvider>
+    </FirebaseAppProvider>
   );
 };
 

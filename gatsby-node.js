@@ -1,5 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+// Allows to read JSON from local
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `DataJson`) {
@@ -10,4 +11,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       value: slug,
     });
   }
+};
+
+// Allows chrome debugging
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    devtool: 'eval-source-map',
+  });
 };

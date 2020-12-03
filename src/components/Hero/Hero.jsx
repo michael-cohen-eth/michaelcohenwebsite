@@ -15,7 +15,7 @@ const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingD
     greeting = (
       <>
         <span className="text-color-main-hero">
-          <Typing.Delay ms={200} />
+          <Typing.Delay ms={400} />
           <Typing.Backspace count={5} />
           {greetingSubject}
         </span>
@@ -29,7 +29,7 @@ const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingD
       onFinishedTyping={onTypingDone}
       cursor={cursor}
       hideCursor={false}
-      speed={15}
+      speed={30}
     >
       <h1 className="hero-title">
         {originalGreeting}
@@ -177,9 +177,9 @@ class Hero extends React.Component {
                       onFinishedTyping={this.onTypingDone}
                       cursor={cursor}
                       hideCursor={false}
-                      speed={15}
+                      speed={30}
                     >
-                      <Typing.Delay ms={200} />
+                      <Typing.Delay ms={400} />
                       <h2 className="hero-title">
                         {subtitle1} <Typing.Delay ms={200} />
                         <span className="text-color-main-hero">{name}</span>.
@@ -194,7 +194,7 @@ class Hero extends React.Component {
                   <Fade
                     left={isDesktop}
                     bottom={isMobile}
-                    duration={1000}
+                    duration={1500}
                     distance="30px"
                     when={typingDone}
                   >
@@ -218,6 +218,6 @@ class Hero extends React.Component {
 }
 
 Hero.propTypes = {
-  stickyAnchor: PropTypes.string.isRequired,
+  stickyAnchor: PropTypes.node.isRequired,
 };
 export default Hero;
