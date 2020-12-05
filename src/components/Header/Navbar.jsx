@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'gatsby-plugin-firebase';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
-import { useFirestoreDocData, useFirestore } from 'reactfire';
+import Loading from '../Utils/Loading';
 import LogoImg from '../Image/LogoImg';
 
 // TODO: get name from data source
 const Navigation = ({ navigationData, sticky = false }) => {
-  const metaRef = useFirestore().collection('portfolio').doc('meta');
-  const { logo, headers } = useFirestoreDocData(metaRef, {
-    initialData: {
-      headers: navigationData.navigationItems,
-      logo: navigationData.logo,
-    },
-  });
+  const [logo, setLogo] = useState(navigationData.logo);
+  const [headers, setHeaders] = useState(navigationData.navigationItems);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection('portfolio')
+      .doc('meta')
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          const meta = snapshot.data();
+          setHeaders(meta.headers);
+          setLogo(meta.logo);
+          setLoading(false);
+        }
+      });
+  }, []);
 
   const navPrefix = 'nav-item-';
   const listBuilder = headers.map((headerText) => (
@@ -33,22 +46,29 @@ const Navigation = ({ navigationData, sticky = false }) => {
   ));
 
   const navbarSticky = sticky ? 'top' : null;
+  let className = 'navbar';
+  if (sticky) {
+    className = className.concat(' navbar-sticky');
+  }
+  if (loading) {
+    className = className.concat(' justify-content-center');
+  }
   return (
-    <Navbar
-      expand="lg"
-      sticky={navbarSticky}
-      className={sticky ? 'navbar navbar-sticky' : 'navbar'}
-      defaultExpanded={false}
-    >
-      <li className="navbar nav-link" key={`${navPrefix}logo`}>
-        <Link to="home" duration={1000} smooth spy>
-          <LogoImg className="ml-auto" alt="Michael Cohen" filename={logo} />
-        </Link>
-      </li>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-        <Nav className="ml-auto">{listBuilder}</Nav>
-      </Navbar.Collapse>
+    <Navbar expand="lg" sticky={navbarSticky} className={className} defaultExpanded={false}>
+      {loading && <Loading />}
+      {!loading && (
+        <>
+          <li className="navbar nav-link" key={`${navPrefix}logo`}>
+            <Link to="home" duration={1000} smooth spy>
+              <LogoImg className="ml-auto" alt="Michael Cohen" filename={logo} />
+            </Link>
+          </li>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+            <Nav className="ml-auto">{listBuilder}</Nav>
+          </Navbar.Collapse>
+        </>
+      )}
     </Navbar>
   );
 };
