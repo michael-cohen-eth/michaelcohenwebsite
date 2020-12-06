@@ -9,19 +9,15 @@
     padding-top: 5rem;
   }
 
-  .project-wrapper {
+  .paper {
+    padding: '6px 16px',
+  }
+
+  .work-wrapper {
     margin-bottom: 15rem;
 
     @include respond(phone) {
       margin-bottom: 0rem;
-    }
-
-    .row {
-      margin-bottom: 8rem;
-
-      @include respond(phone) {
-        margin-bottom: 4rem;
-      }
     }
 
     &__text {

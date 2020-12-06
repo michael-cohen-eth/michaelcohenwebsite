@@ -43,7 +43,7 @@ const App = ({ data }) => {
       <Navigation navigationData={navigationData} sticky={isSticky} />
       <Hero stickyAnchor={stickyAnchor} />
       <About />
-      <Work />
+      <Work workData={[]} />
       <Projects />
       <Contact />
       <Footer />
