@@ -2,12 +2,12 @@
   min-height: 100vh;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 0px;
   background: $white-color;
   font-weight: 400;
   color: $dark-blue-text;
-  padding: 0rem 5.6rem;
+  padding: 15.6rem 5.6rem 0;
   margin-bottom: 0;
   top: 0;
   left: 0;
@@ -17,9 +17,11 @@
 
   // If you want to set a background image on the hero section, uncomment these with yout custom image
 
-  /* background: url("/src/assets/[your-image].png");
-  background-position: center;
-  background-size: cover; */
+  background: url("../images/profile.png");
+  background-color: $white-color;
+  background-position: right;
+  background-size: contain; 
+  background-repeat: no-repeat;
 
   @include respond(phone) {
     padding: 0rem $default-font-size;

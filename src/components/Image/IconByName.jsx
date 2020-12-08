@@ -1,25 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
-import { FaAmazon } from 'react-icons/fa';
+import { FaAmazon, FaAws } from 'react-icons/fa';
 import { Watson32 } from '@carbon/icons-react';
 
 const IconName = {
-  AMAZON: 'Amazon',
+  AMAZON: 'AMAZON',
+  AWS: 'AWS',
   IBM: 'IBM',
-  NIELSEN: 'nielsen',
+  NIELSEN: 'NIELSEN',
 };
 
 const IconByName = ({ iconName }) => {
-  switch (iconName) {
+  switch (iconName.toUpperCase()) {
     case IconName.NIELSEN:
-      return <IconResearchAudience base="#2AACE2" accent="#000000" />;
+      return <IconResearchAudience accent="#00adef" base="#00adef" />;
     case IconName.AMAZON:
-          return <FaAmazon color="#333333" />;
+      return <FaAmazon />;
+    case IconName.AWS:
+      return <FaAws />;
     case IconName.IBM:
-      return <Watson32 color="#333333" />;
+      return <Watson32 color="#262626" />;
     default:
-      return <IconResearchAudience base="#2AACE2" accent="#000000" />;
+      return <IconResearchAudience accent="#000000" />;
   }
 };
 

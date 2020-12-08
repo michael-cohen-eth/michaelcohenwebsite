@@ -199,13 +199,13 @@ class Hero extends React.Component {
                     distance="30px"
                     when={typingDone}
                   >
-                    <p className="hero-cta">
+                    <div className="hero-cta">
                       <Typography className="cta-btn cta-btn--hero">
-                        <Link to="about" smooth duration={1000} offset={-70} >
+                        <Link to="about" smooth duration={1000} offset={-70}>
                           {cta}
                         </Link>
                       </Typography>
-                    </p>
+                    </div>
                   </Fade>
                 </Row>
                 <Row ref={stickyAnchor} />
