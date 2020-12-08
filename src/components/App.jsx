@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+// import {  } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import useSticky from '../hooks/useSticky.js';
 import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
@@ -10,6 +12,12 @@ import Contact from './Contact/Contact';
 import Footer from './Footer/Footer';
 
 import { PortfolioProvider } from '../context/context';
+
+const myTheme = createMuiTheme({
+  typography: {
+    fontFamily: 'Roboto Mono',
+  },
+});
 
 const App = ({ data }) => {
   const [hero, setHero] = useState({});
@@ -38,16 +46,18 @@ const App = ({ data }) => {
 
   // TODO: Add 'Home' empty component for anchoring
   return (
-    <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
-      <span id="home" />
-      <Navigation navigationData={navigationData} sticky={isSticky} />
-      <Hero stickyAnchor={stickyAnchor} />
-      <About />
-      <Work workData={[]} />
-      <Projects />
-      <Contact />
-      <Footer />
-    </PortfolioProvider>
+    <MuiThemeProvider theme={myTheme}>
+      <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
+        <span id="home" />
+        <Navigation navigationData={navigationData} sticky={isSticky} />
+        <Hero stickyAnchor={stickyAnchor} />
+        <About />
+        <Work />
+        <Projects />
+        <Contact />
+        <Footer />
+      </PortfolioProvider>
+    </MuiThemeProvider>
   );
 };
 

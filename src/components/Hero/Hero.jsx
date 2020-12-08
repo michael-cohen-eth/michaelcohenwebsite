@@ -4,6 +4,7 @@ import { Container, Row } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
 import Typing, { Cursor } from 'react-typing-animation';
+import Typography from '@material-ui/core/Typography';
 
 import { PortfolioConsumer } from '../../context/context';
 
@@ -14,11 +15,11 @@ const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingD
   } else {
     greeting = (
       <>
-        <span className="text-color-main-hero">
+        <Typography variant="h1" className="text-color-main-hero">
           <Typing.Delay ms={400} />
           <Typing.Backspace count={5} />
           {greetingSubject}
-        </span>
+        </Typography>
         .
       </>
     );
@@ -31,10 +32,10 @@ const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingD
       hideCursor={false}
       speed={30}
     >
-      <h1 className="hero-title">
+      <Typography variant="h1" className="hero-title">
         {originalGreeting}
         {greeting}
-      </h1>
+      </Typography>
     </Typing>
   );
 };
@@ -180,13 +181,13 @@ class Hero extends React.Component {
                       speed={30}
                     >
                       <Typing.Delay ms={400} />
-                      <h2 className="hero-title">
+                      <Typography variant="h2" className="hero-title">
                         {subtitle1} <Typing.Delay ms={200} />
                         <span className="text-color-main-hero">{name}</span>.
                         <Typing.Delay ms={200} />
                         <br />
                         {subtitle2}
-                      </h2>
+                      </Typography>
                     </Typing>
                   )}
                 </Row>{' '}
@@ -199,11 +200,11 @@ class Hero extends React.Component {
                     when={typingDone}
                   >
                     <p className="hero-cta">
-                      <span className="cta-btn cta-btn--hero">
-                        <Link to="about" smooth duration={1000} offset={-70}>
+                      <Typography className="cta-btn cta-btn--hero">
+                        <Link to="about" smooth duration={1000} offset={-70} >
                           {cta}
                         </Link>
-                      </span>
+                      </Typography>
                     </p>
                   </Fade>
                 </Row>

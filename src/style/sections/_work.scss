@@ -9,8 +9,24 @@
     padding-top: 5rem;
   }
 
-  .paper {
-    padding: '6px 16px',
+  .work-item { 
+    background: $primary-color;
+    color: $white-color;
+
+    .date {
+      color: $dark-grey;
+      font-size: $default-font-size;
+    }
+
+    .icon {
+      display: block;
+      width: 36px;
+      height: 36px;
+      left: auto;
+      top: auto;
+      margin-left: 0px;
+      margin-top: 0px;
+    }
   }
 
   .work-wrapper {
