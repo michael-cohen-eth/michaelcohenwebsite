@@ -129,7 +129,6 @@ WorkItem.propTypes = {
 };
 
 const WorkTimeline = ({ workItems, animate }) => {
-  console.log(animate);
   return (
     <VerticalTimeline animate={animate}>
       {workItems.map((workItem) => (
