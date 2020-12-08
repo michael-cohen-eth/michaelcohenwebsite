@@ -16,7 +16,7 @@ import Title from '../Title/Title';
 const formatProjectDate = (seconds) => {
   const ms = seconds * 1000;
   const dateObj = new Date(ms);
-  return dateObj.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  return dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 };
 function SimpleDialog(props) {
   const { open, company, role, team, onClose, details = [], dates } = props;
