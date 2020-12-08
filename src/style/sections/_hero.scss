@@ -17,11 +17,11 @@
 
   // If you want to set a background image on the hero section, uncomment these with yout custom image
 
-  background: url("../images/profile.png");
-  background-color: $white-color;
-  background-position: right;
-  background-size: contain; 
-  background-repeat: no-repeat;
+  // background: url("../images/profile.png");
+  // background-color: $white-color;
+  // background-position: right;
+  // background-size: contain; 
+  // background-repeat: no-repeat;
 
   @include respond(phone) {
     padding: 0rem $default-font-size;

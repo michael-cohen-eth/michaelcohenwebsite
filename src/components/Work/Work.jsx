@@ -128,9 +128,10 @@ WorkItem.propTypes = {
   color: PropTypes.string,
 };
 
-const WorkTimeline = ({ workItems }) => {
+const WorkTimeline = ({ workItems, animate }) => {
+  console.log(animate);
   return (
-    <VerticalTimeline animate>
+    <VerticalTimeline animate={animate}>
       {workItems.map((workItem) => (
         <WorkItem
           company={workItem.company}
@@ -148,6 +149,7 @@ const WorkTimeline = ({ workItems }) => {
 };
 
 WorkTimeline.propTypes = {
+  animate: PropTypes.bool.isRequired,
   workItems: PropTypes.arrayOf(
     PropTypes.shape({
       company: PropTypes.string.isRequired,
@@ -170,6 +172,16 @@ WorkTimeline.propTypes = {
 const Work = ({ workData = [] }) => {
   const [work, setWork] = useState(workData);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth > 769) {
+      setIsMobile(false);
+    } else {
+      setIsMobile(true);
+    }
+  }, []);
+
   useEffect(() => {
     firebase
       .firestore()
@@ -194,7 +206,7 @@ const Work = ({ workData = [] }) => {
         {!loading && (
           <div className="work-wrapper">
             <Title title="Work" />
-            <WorkTimeline workItems={work} />
+            <WorkTimeline workItems={work} animate={!isMobile}/>
           </div>
         )}
       </Container>
