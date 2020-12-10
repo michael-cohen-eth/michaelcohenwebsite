@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: 12,
     [theme.breakpoints.down('sm')]: {
+      marginLeft: '0.5em',
       width: '8em',
       textSize: 9,
     },
@@ -104,7 +105,7 @@ const SkillsTabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Row xs={2} md={6} lg={6}>
+        <Row xs={2} md={4} lg={6} noGutters>
           {children}
         </Row>
       )}
