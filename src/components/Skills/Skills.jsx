@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Popover from '@material-ui/core/Popover';
+import PopupState, { bindHover, bindPopover } from 'material-ui-popup-state';
 import Card from '@material-ui/core/Card';
 import Title from '../Title/Title';
 import IconByName from '../Image/IconByName';
@@ -26,7 +28,13 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:focus': {
       backgroundColor: theme.palette.divider,
-    }
+    },
+  },
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing.unit,
   },
   cards: {
     maxWidth: '12em',
@@ -35,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: 12,
     [theme.breakpoints.down('sm')]: {
-      width: '6em',
+      width: '8em',
       textSize: 9,
     },
   },
@@ -46,14 +54,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SkillItem = ({ skill }) => {
-  const styles = useStyles();
+  const classes = useStyles();
   return (
-    <Col>
-      <Card className={styles.cards}>
-        <IconByName iconName={skill.logo} size={iconSize} color={skill.iconColor} />
-        <Typography>{skill.name}</Typography>
-      </Card>
-    </Col>
+    <PopupState variant="popover" popupId="popoverSkill">
+      {(popupState) => (
+        <Col>
+          <Card className={classes.cards} {...bindHover(popupState)}>
+            <IconByName iconName={skill.logo.toUpperCase()} size={iconSize} color={skill.iconColor} />
+            <Typography variant="subtitle1">{skill.name}</Typography>
+          </Card>
+          <Popover
+            {...bindPopover(popupState)}
+            className={classes.popover}
+            classes={{
+              paper: classes.paper,
+            }}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            disableRestoreFocus
+          >
+            <Typography>{skill.description}</Typography>
+          </Popover>
+        </Col>
+      )}
+    </PopupState>
   );
 };
 const SkillsTabPanel = (props) => {
@@ -103,12 +133,20 @@ const SkillsTabs = ({ skillsCollection }) => {
     });
     return map;
   }, {});
+  const allSkills = Object.keys(skillsObj).flatMap((key) => skillsObj[key]);
   const skillsLabels = Object.keys(skillsObj);
   const skillTabItems = (skillTree) => {
     return Object.keys(skillTree).map((key) => <SkillItem skill={skillTree[key]} key={key} />);
   };
-  const skillTabs = Object.keys(skillsObj).map((skill, index) => (
-    <SkillsTabPanel value={value} index={index} key={skill}>
+  const allTabPanel = (
+    <SkillsTabPanel value={value} index={0} key="allSkillsTab">
+      {allSkills.map((skillUnwrapped) => {
+        return Object.keys(skillUnwrapped).map(skillKey => <SkillItem skill={skillUnwrapped[skillKey]} key={skillKey} />);
+      })}
+    </SkillsTabPanel>
+  );
+  const skillTabsPanels = Object.keys(skillsObj).map((skill, index) => (
+    <SkillsTabPanel value={value} index={index + 1} key={skill}>
       {skillTabItems(skillsObj[skill])}
     </SkillsTabPanel>
   ));
@@ -123,11 +161,18 @@ const SkillsTabs = ({ skillsCollection }) => {
         aria-label="Skills tabs"
         className={classes.tabs}
       >
+        <Tab label="ALL" className={classes.tabLabel} key="ALL-0" {...a11yProps(0)} />
         {skillsLabels.map((tabLabel, index) => (
-          <Tab label={tabLabel} className={classes.tabLabel} {...a11yProps(index)} />
+          <Tab
+            label={tabLabel}
+            className={classes.tabLabel}
+            key={`${tabLabel}-${index + 1}`}
+            {...a11yProps(index + 1)}
+          />
         ))}
       </Tabs>
-      {skillTabs}
+      {allTabPanel}
+      {skillTabsPanels}
     </div>
   );
 };
