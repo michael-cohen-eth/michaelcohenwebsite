@@ -27,9 +27,9 @@ const myTheme = createMuiTheme({
     background: {
       paper: '#f7f8f9',
     },
-    divider: '#52b788',
+    divider: '#C38D9E',
     primary: {
-      main: '#52b788',
+      main: '#C38D9E',
     },
   },
 });

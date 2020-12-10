@@ -84,7 +84,7 @@ const WorkItem = ({ company, team, role, start, end, details, color = '' }) => {
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
       textClassName="work-item"
-      contentArrowStyle={{ borderRight: '7px solid  #52b788' }}
+      contentArrowStyle={{ borderRight: '7px solid  #C38D9E' }}
       date={dateStr}
       dateClassName="date"
       iconStyle={iconStyle}

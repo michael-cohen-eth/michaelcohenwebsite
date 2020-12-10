@@ -61,13 +61,13 @@
       "networks": [
         {
           "id": "0",
-          "name": "twitter",
-          "url": ""
+          "name": "github",
+          "url": "https://github.com/mickeyjk"
         },
         {
           "id": "1",
           "name": "linkedin",
-          "url": ""
+          "url": "https://www.linkedin.com/in/michael-cohen1995/"
         }
       ]
     },
