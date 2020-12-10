@@ -1,8 +1,12 @@
 #projects {
   background-color: $white-color;
+  -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
   color: $dark-blue-text;
-  margin-top: -15rem;
-  padding-top: 15rem;
+  margin-top: -25rem;
+  padding-top: 25rem;
+  padding-bottom: 15rem;
+  margin-bottom: -25rem;
 
   @include respond(tab-land) {
     margin-top: 0;
