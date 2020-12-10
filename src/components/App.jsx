@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-// import {  } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import useSticky from '../hooks/useSticky.js';
 import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
 import About from './About/About';
+import Skills from './Skills/Skills';
 import Projects from './Projects/Projects';
 import Work from './Work/Work';
 import Contact from './Contact/Contact';
@@ -16,6 +16,21 @@ import { PortfolioProvider } from '../context/context';
 const myTheme = createMuiTheme({
   typography: {
     fontFamily: 'Roboto Mono',
+    body1: {
+      fontSize: 12,
+    },
+    subtitle1: {
+      fontSize: 14,
+    },
+  },
+  palette: {
+    background: {
+      paper: '#f7f8f9',
+    },
+    divider: '#52b788',
+    primary: {
+      main: '#52b788',
+    },
   },
 });
 
@@ -52,6 +67,7 @@ const App = ({ data }) => {
         <Navigation navigationData={navigationData} sticky={isSticky} />
         <Hero stickyAnchor={stickyAnchor} />
         <About />
+        <Skills />
         <Work />
         <Projects />
         <Contact />

@@ -29,17 +29,17 @@ function SimpleDialog(props) {
     <Dialog aria-labelledby="simple-dialog-title" open={open} onClose={handleClose}>
       <DialogTitle disableTypography>
         <Typography variant="h4">{company}</Typography>
-        <Typography variant="h5">{team}</Typography>
-      </DialogTitle>
-      <DialogContent>
         <Row>
           <Col className="mr-auto">
-            <DialogContentText>{role}</DialogContentText>
+            <Typography variant="h5">{team}</Typography>
           </Col>
           <Col>
             <DialogContentText align="right">{dates}</DialogContentText>
           </Col>
         </Row>
+        <Typography variant="body1">{role}</Typography>
+      </DialogTitle>
+      <DialogContent>
         {details.map((item) => (
           <DialogContentText key={item}>• {item}</DialogContentText>
         ))}
@@ -94,10 +94,10 @@ const WorkItem = ({ company, team, role, start, end, details, color = '' }) => {
       iconOnClick={handleClickOpen}
     >
       <Typography variant="h4" className="vertical-timeline-element-title">
-        {team}
+        {company}
       </Typography>
       <Typography variant="h5" className="vertical-timeline-element-subtitle">
-        {company}
+        {team}
       </Typography>
       <SimpleDialog
         open={open}

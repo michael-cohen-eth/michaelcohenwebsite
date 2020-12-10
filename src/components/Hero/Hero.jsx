@@ -15,11 +15,11 @@ const Greeting = ({ originalGreeting, typingKey, greetingSubject = '', onTypingD
   } else {
     greeting = (
       <>
-        <Typography variant="h1" className="text-color-main-hero">
+        <span variant="h1" className="text-color-main-hero">
           <Typing.Delay ms={400} />
           <Typing.Backspace count={5} />
           {greetingSubject}
-        </Typography>
+        </span>
         .
       </>
     );

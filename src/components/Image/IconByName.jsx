@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
 import { FaAmazon, FaAws } from 'react-icons/fa';
+import { FiHexagon } from 'react-icons/fi';
+import { SiFlutter, SiAndroid, SiReact } from 'react-icons/si';
 import { Watson32 } from '@carbon/icons-react';
 
 const IconName = {
@@ -9,20 +11,32 @@ const IconName = {
   AWS: 'AWS',
   IBM: 'IBM',
   NIELSEN: 'NIELSEN',
+  FLUTTER: 'FLUTTER',
+  ANDROID: 'ANDROID',
+  REACT: 'REACT',
+  CATAN: 'CATAN',
 };
 
-const IconByName = ({ iconName }) => {
+const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
   switch (iconName.toUpperCase()) {
     case IconName.NIELSEN:
-      return <IconResearchAudience accent="#00adef" base="#00adef" />;
+      return <IconResearchAudience accent="#262626" base="#262626" />;
     case IconName.AMAZON:
       return <FaAmazon />;
     case IconName.AWS:
       return <FaAws />;
     case IconName.IBM:
-      return <Watson32 color="#262626" />;
-    default:
-      return <IconResearchAudience accent="#000000" />;
+      return <Watson32 color="#ffffff" />;
+    case IconName.ANDROID:
+      return <SiAndroid size={size} color={color} />;
+    case IconName.REACT:
+      return <SiReact size={size} color={color} />;
+    case IconName.CATAN:
+      return <FiHexagon size={size} color={color} />;
+    case IconName.FLUTTER:
+    default: {
+      return <SiFlutter size={size} color={color} />;
+    }
   }
 };
 
