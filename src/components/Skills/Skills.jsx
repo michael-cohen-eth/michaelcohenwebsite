@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.divider,
     },
   },
+  indicator: {
+    width: '10px',
+  },
   popover: {
     pointerEvents: 'none',
   },
@@ -50,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   tabLabel: {
     marginRight: '2em',
     fontSize: 14,
+    '&:hover': {
+      borderRight: `10px solid ${theme.palette.divider}`,
+    },
   },
 }));
 
@@ -156,6 +162,7 @@ const SkillsTabs = ({ skillsCollection }) => {
         orientation="vertical"
         variant="scrollable"
         indicatorColor="primary"
+        classes={{ indicator: classes.indicator }}
         value={value}
         onChange={handleChange}
         aria-label="Skills tabs"

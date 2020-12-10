@@ -1,15 +1,27 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Fade from 'react-reveal/Fade';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Typography } from '@material-ui/core';
+import { useStaticQuery, graphql } from "gatsby";
 import Title from '../Title/Title';
 import AboutImg from '../Image/AboutImg';
 import PortfolioContext from '../../context/context';
-import { Typography } from '@material-ui/core';
 
 const About = ({ stickyAnchor }) => {
   const { about } = useContext(PortfolioContext);
-  const { img, paragraphOne, paragraphTwo, paragraphThree, resume } = about;
-
+  const { img, paragraphOne, paragraphTwo, paragraphThree } = about;
+  const resumeInfo = useStaticQuery(graphql`
+    {
+      allFile(filter: { extension: { eq: "pdf" } }) {
+        edges {
+          node {
+            publicURL
+            name
+          }
+        }
+      }
+    }
+  `).allFile.edges[0];
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -47,18 +59,21 @@ const About = ({ stickyAnchor }) => {
                 <Typography variant="h5" className="about-wrapper__info-text">
                   {paragraphThree}
                 </Typography>
-                {resume && (
-                  <span className="d-flex mt-3">
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cta-btn cta-btn--resume"
-                      href={resume}
-                    >
-                      resume
-                    </a>
-                  </span>
-                )}
+                <br />
+                <br />
+                <Typography variant="h5" className="about-wrapper__info-text">
+                  prefer the oldschool?
+                </Typography>
+                <span className="d-flex mt-3">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cta-btn cta-btn--resume"
+                    href={resumeInfo.node.publicURL}
+                  >
+                    here's my resume.pdf
+                  </a>
+                </span>
               </div>
             </Fade>
           </Col>
