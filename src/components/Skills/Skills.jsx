@@ -54,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
   tabLabel: {
     marginRight: '2em',
     fontSize: 14,
-    '&:hover': {
-      borderRight: `10px solid ${theme.palette.divider}`,
+    [theme.breakpoints.up('lg')]: {
+      '&:hover': {
+        borderRight: `10px solid ${theme.palette.divider}`,
+      },
     },
   },
 }));
