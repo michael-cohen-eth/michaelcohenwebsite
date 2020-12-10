@@ -187,6 +187,7 @@ const Work = ({ workData = [] }) => {
       .collection('portfolio')
       .doc('work')
       .collection('workItems')
+      .orderBy('start', 'desc')
       .get()
       .then((snapshot) => {
         const items = [];

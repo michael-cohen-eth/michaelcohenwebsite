@@ -6,6 +6,9 @@
   @include respond(phone) {
     border: 0px;
   }
+  .navbar {
+    background: $dark-grey;
+  }
 
   &__text {
     color: darken(white, 50%);

@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-scroll';
+import { Navbar } from 'react-bootstrap';
 import PortfolioContext from '../../context/context';
 import GithubButtons from '../GithubButtons/GithubButtons';
+import LogoImg from '../Image/LogoImg';
 
 import { githubButtons } from '../../mock/data';
 
@@ -47,6 +49,13 @@ const Footer = () => {
 
         {isEnabled && <GithubButtons />}
       </Container>
+      <Navbar className="navbar">
+        <li className="navbar nav-link" key="footer-logo">
+          <Link to="home" duration={1000} smooth spy>
+            <LogoImg className="ml-auto" alt="Michael Cohen" filename="logo_foot.png" />
+          </Link>
+        </li>
+      </Navbar>
     </footer>
   );
 };
