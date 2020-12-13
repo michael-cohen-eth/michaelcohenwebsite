@@ -62,7 +62,7 @@ const About = ({ stickyAnchor }) => {
                 <br />
                 <br />
                 <Typography variant="h5" className="about-wrapper__info-text">
-                  prefer the oldschool?
+                  are you more oldschool?
                 </Typography>
                 <span className="d-flex mt-3">
                   <a
@@ -71,7 +71,7 @@ const About = ({ stickyAnchor }) => {
                     className="cta-btn cta-btn--resume"
                     href={resumeInfo.node.publicURL}
                   >
-                    here's my resume.pdf
+                    my resume.pdf
                   </a>
                 </span>
               </div>

@@ -1,63 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'gatsby-plugin-firebase';
 import PropTypes from 'prop-types';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Typography } from '@material-ui/core';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import Loading from '../Utils/Loading';
 import IconByName from '../Image/IconByName';
 import Title from '../Title/Title';
+import { WorkDialog, SchoolDialog } from './ItemDialog';
+import { schoolType, workType } from '../AppProps';
+import { School } from '@material-ui/icons';
 
 const formatProjectDate = (seconds) => {
   const ms = seconds * 1000;
   const dateObj = new Date(ms);
   return dateObj.toLocaleString('en-US', { month: 'short', year: 'numeric' });
 };
-function SimpleDialog(props) {
-  const { open, company, role, team, onClose, details = [], dates } = props;
 
-  const handleClose = () => {
-    onClose();
-  };
-
-  return (
-    <Dialog aria-labelledby="simple-dialog-title" open={open} onClose={handleClose}>
-      <DialogTitle disableTypography>
-        <Typography variant="h4">{company}</Typography>
-        <Row>
-          <Col className="mr-auto">
-            <Typography variant="h5">{team}</Typography>
-          </Col>
-          <Col>
-            <DialogContentText align="right">{dates}</DialogContentText>
-          </Col>
-        </Row>
-        <Typography variant="body1">{role}</Typography>
-      </DialogTitle>
-      <DialogContent>
-        {details.map((item) => (
-          <DialogContentText key={item}>• {item}</DialogContentText>
-        ))}
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  company: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  team: PropTypes.string.isRequired,
-  details: PropTypes.arrayOf(PropTypes.string),
-};
-
-const WorkItem = ({ company, team, role, start, end, details, color = '' }) => {
+const WorkItem = ({ item }) => {
   const [open, setOpen] = React.useState(false);
   const [clickedAwayFlag, setClickedAwayFlag] = React.useState(true);
 
@@ -72,14 +33,15 @@ const WorkItem = ({ company, team, role, start, end, details, color = '' }) => {
     setOpen(false);
     setClickedAwayFlag(false);
   };
-  const startStr = formatProjectDate(start.seconds);
-  const endStr = end ? formatProjectDate(end.seconds) : 'Now';
+  const startStr = formatProjectDate(item.start.seconds);
+  const endStr = item.end ? formatProjectDate(item.end.seconds) : 'Now';
   const dateStr = `${startStr} - ${endStr}`;
   const iconStyle = {
-    background: color,
+    background: item.color,
     color: '#333333',
   };
-
+  const title = item.company ? item.company : item.college;
+  const subtitle = item.team ? item.team : `${item.major}, ${item.minor}`;
   return (
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
@@ -89,59 +51,35 @@ const WorkItem = ({ company, team, role, start, end, details, color = '' }) => {
       dateClassName="date"
       iconStyle={iconStyle}
       iconClassName="icon"
-      icon={<IconByName iconName={company.toUpperCase()} />}
+      icon={<IconByName iconName={title.toUpperCase()} />}
       onTimelineElementClick={handleClickOpen}
       iconOnClick={handleClickOpen}
     >
       <Typography variant="h4" className="vertical-timeline-element-title">
-        {company}
+        {title}
       </Typography>
       <Typography variant="h5" className="vertical-timeline-element-subtitle">
-        {team}
+        {subtitle}
       </Typography>
-      <SimpleDialog
-        open={open}
-        company={company}
-        role={role}
-        team={team}
-        onClose={handleClickClose}
-        details={details}
-        dates={dateStr}
-      />
+      {item.company && (
+        <WorkDialog open={open} item={item} onClose={handleClickClose} dates={dateStr} />
+      )}
+      {item.college && (
+        <SchoolDialog open={open} item={item} onClose={handleClickClose} dates={dateStr} />
+      )}
     </VerticalTimelineElement>
   );
 };
 
 WorkItem.propTypes = {
-  company: PropTypes.string.isRequired,
-  team: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  details: PropTypes.arrayOf(PropTypes.string),
-  start: PropTypes.shape({
-    nanoseconds: PropTypes.number,
-    seconds: PropTypes.number,
-  }),
-  end: PropTypes.shape({
-    nanoseconds: PropTypes.number,
-    seconds: PropTypes.number,
-  }),
-  color: PropTypes.string,
+  item: PropTypes.oneOfType([workType, schoolType])
 };
 
 const WorkTimeline = ({ workItems, animate }) => {
   return (
     <VerticalTimeline animate={animate}>
       {workItems.map((workItem) => (
-        <WorkItem
-          company={workItem.company}
-          team={workItem.team}
-          start={workItem.start}
-          role={workItem.role}
-          details={workItem.details}
-          color={workItem.color}
-          end={workItem.end}
-          key={workItem.team}
-        />
+        <WorkItem item={workItem} key={workItem.start} />
       ))}
     </VerticalTimeline>
   );
@@ -149,23 +87,7 @@ const WorkTimeline = ({ workItems, animate }) => {
 
 WorkTimeline.propTypes = {
   animate: PropTypes.bool.isRequired,
-  workItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      company: PropTypes.string.isRequired,
-      team: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-      color: PropTypes.string,
-      details: PropTypes.arrayOf(PropTypes.string),
-      start: PropTypes.shape({
-        nanoseconds: PropTypes.number,
-        seconds: PropTypes.number,
-      }),
-      end: PropTypes.shape({
-        nanoseconds: PropTypes.number,
-        seconds: PropTypes.number,
-      }),
-    })
-  ),
+  workItems: PropTypes.arrayOf(PropTypes.oneOfType([workType, schoolType])),
 };
 
 const Work = ({ workData = [] }) => {

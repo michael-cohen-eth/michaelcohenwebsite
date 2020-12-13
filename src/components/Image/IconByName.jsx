@@ -5,6 +5,7 @@ import { FaAmazon, FaAws, FaJava } from 'react-icons/fa';
 import { FiHexagon } from 'react-icons/fi';
 import { SiFlutter, SiAndroid, SiReact } from 'react-icons/si';
 import { Watson32 } from '@carbon/icons-react';
+import UFIcon from './Icons/UFIcon';
 
 const IconName = {
   AMAZON: 'AMAZON',
@@ -16,6 +17,7 @@ const IconName = {
   REACT: 'REACT',
   JAVA: 'JAVA',
   CATAN: 'CATAN',
+  UF: 'UNIVERSITY OF FLORIDA',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -36,6 +38,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaJava size={size} color={color} />;
     case IconName.CATAN:
       return <FiHexagon size={size} color={color} />;
+    case IconName.UF:
+      return <UFIcon size={size} color={color} />;
     case IconName.FLUTTER:
     default: {
       return <SiFlutter size={size} color={color} />;
@@ -44,7 +48,7 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
 };
 
 IconByName.propTypes = {
-  iconName: PropTypes.oneOf(Object.keys(IconName)),
+  iconName: PropTypes.oneOf(Object.values(IconName)),
 };
 
 export default IconByName;
