@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
-import { FaAmazon, FaAws, FaJava, FaSwift, FaPython } from 'react-icons/fa';
+import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from 'react-icons/fa';
 import { FiHexagon } from 'react-icons/fi';
+import { GiHexes } from 'react-icons/gi';
 import { SiFlutter, SiAndroid, SiReact } from 'react-icons/si';
 import { GrStackOverflow } from 'react-icons/gr';
 import { CgWebsite } from 'react-icons/cg';
@@ -24,6 +25,7 @@ const IconName = {
   WEBDEV: 'WEBDEV',
   SWIFT: 'SWIFT',
   PYTHON: 'PYTHON',
+  COFFEE: 'COFFEE',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -43,7 +45,7 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
     case IconName.JAVA:
       return <FaJava size={size} color={color} />;
     case IconName.CATAN:
-      return <FiHexagon size={size} color={color} />;
+      return <GiHexes size={size} color={color} />;
     case IconName.UF:
       return <UFIcon size={size} color={color} />;
     case IconName.FS:
@@ -54,6 +56,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaSwift size={size} color={color} />;
     case IconName.PYTHON:
       return <FaPython size={size} color={color} />;
+    case IconName.COFFEE:
+      return <FaCoffee size={size} color={color} />;
     case IconName.FLUTTER:
     default: {
       return <SiFlutter size={size} color={color} />;
