@@ -13,6 +13,7 @@
       "title": "hello, world",
       "subtitle1": "My name is ",
       "name": "Michael Cohen",
+      "img": "profile.png",
       "subtitle2": "I'm a software developer.",
       "cta": "about me"
     },

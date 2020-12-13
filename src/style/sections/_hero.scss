@@ -28,6 +28,41 @@
     padding-top: 25rem;
   }
 
+  &__image {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+
+      @include respond(tab-port) {
+        padding-bottom: 6.4rem;
+      }
+      @include respond(tab-land) {
+        height: 100%;
+      }
+    }
+
+  .hero-image {
+    padding: 8rem;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    @include respond(tab-port) {
+        padding-bottom: 6.4rem;
+    }
+    @include respond(tab-land) {
+      height: 100%;
+    }
+  }
+
+  .hero-text-container {
+    padding: 8rem;
+    @include respond(phone) {
+    padding: 0rem $default-font-size;
+    }
+  }
+
   .hero-title {
     font-size: 6rem;
     font-weight: 700;

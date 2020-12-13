@@ -119,7 +119,6 @@ const Projects = () => {
           {allProjects.map((projectUnwrapped) => {
 
             return Object.keys(projectUnwrapped).map((projectKey) => {
-              console.log(projectUnwrapped[projectKey]);
               const project = projectUnwrapped[projectKey];
               return (
                 <ProjectItem

@@ -75,6 +75,7 @@ export const query = graphql`
               subtitle1
               subtitle2
               title
+              img
             }
           }
         }

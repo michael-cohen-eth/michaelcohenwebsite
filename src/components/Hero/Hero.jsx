@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-scroll';
 import Typing, { Cursor } from 'react-typing-animation';
 import Typography from '@material-ui/core/Typography';
+import AboutImg from '../Image/AboutImg';
 
 import { PortfolioConsumer } from '../../context/context';
 
@@ -154,61 +155,80 @@ class Hero extends React.Component {
     return (
       <PortfolioConsumer>
         {(portfolio) => {
-          const { title, name, subtitle1, subtitle2, cta } = portfolio.hero;
+          const { title, name, subtitle1, subtitle2, cta, img } = portfolio.hero;
           return (
             <section id="hero" className="jumbotron">
               <Container fluid>
                 <Row>
-                  {typingKey && title && subtitle1 && subtitle2 && (
-                    <Greeting
-                      originalGreeting={title}
-                      typingKey={typingKey}
-                      greetingSubject={greetingSubject}
-                      onTypingDone={this.setHeaderTypingDone}
-                      cursor={cursor}
-                    />
-                  )}
-                </Row>
-                <Row>
-                  {headerTypingDone && subtitle1 && subtitle2 && (
-                    <Typing
-                      left={isDesktop}
+                  <Col className="hero-text-container">
+                    <Row>
+                      {typingKey && title && subtitle1 && subtitle2 && (
+                        <Greeting
+                          originalGreeting={title}
+                          typingKey={typingKey}
+                          greetingSubject={greetingSubject}
+                          onTypingDone={this.setHeaderTypingDone}
+                          cursor={cursor}
+                        />
+                      )}
+                    </Row>
+                    <Row>
+                      {headerTypingDone && subtitle1 && subtitle2 && (
+                        <Typing
+                          left={isDesktop}
+                          bottom={isMobile}
+                          key={`${typingKey}-2`}
+                          onFinishedTyping={this.onTypingDone}
+                          cursor={cursor}
+                          hideCursor={false}
+                          speed={30}
+                        >
+                          <Typing.Delay ms={400} />
+                          <Typography variant="h2" className="hero-title">
+                            {subtitle1} <Typing.Delay ms={200} />
+                            <span className="text-color-main-hero">{name}</span>.
+                            <Typing.Delay ms={200} />
+                            <br />
+                            {subtitle2}
+                          </Typography>
+                        </Typing>
+                      )}
+                    </Row>{' '}
+                    <Row>
+                      <Fade
+                        left={isDesktop}
+                        bottom={isMobile}
+                        duration={1500}
+                        distance="30px"
+                        when={typingDone}
+                      >
+                        <div className="hero-cta">
+                          <Typography className="cta-btn cta-btn--hero">
+                            <Link to="about" smooth duration={1000} offset={-70}>
+                              {cta}
+                            </Link>
+                          </Typography>
+                        </div>
+                      </Fade>
+                    </Row>
+                    <Row ref={stickyAnchor} />
+                  </Col>
+                  {isDesktop && (
+                    <Fade
+                      right={isDesktop}
                       bottom={isMobile}
-                      key={`${typingKey}-2`}
-                      onFinishedTyping={this.onTypingDone}
-                      cursor={cursor}
-                      hideCursor={false}
-                      speed={30}
+                      duration={1500}
+                      distance="30px"
+                      when={typingDone}
                     >
-                      <Typing.Delay ms={400} />
-                      <Typography variant="h2" className="hero-title">
-                        {subtitle1} <Typing.Delay ms={200} />
-                        <span className="text-color-main-hero">{name}</span>.
-                        <Typing.Delay ms={200} />
-                        <br />
-                        {subtitle2}
-                      </Typography>
-                    </Typing>
+                      <Col className="hero-image">
+                        <div data-tilt className="thumbnail rounded">
+                          <AboutImg alt="profile picture" filename={img} />
+                        </div>
+                      </Col>
+                    </Fade>
                   )}
-                </Row>{' '}
-                <Row>
-                  <Fade
-                    left={isDesktop}
-                    bottom={isMobile}
-                    duration={1500}
-                    distance="30px"
-                    when={typingDone}
-                  >
-                    <div className="hero-cta">
-                      <Typography className="cta-btn cta-btn--hero">
-                        <Link to="about" smooth duration={1000} offset={-70}>
-                          {cta}
-                        </Link>
-                      </Typography>
-                    </div>
-                  </Fade>
                 </Row>
-                <Row ref={stickyAnchor} />
               </Container>
             </section>
           );
