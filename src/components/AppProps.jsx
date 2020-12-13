@@ -30,3 +30,10 @@ export const schoolType = PropTypes.shape({
     seconds: PropTypes.number,
   }),
 });
+
+export const skillType = PropTypes.shape({
+  logo: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  iconColor: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+});

@@ -11,6 +11,7 @@ import PopupState, { bindHover, bindPopover } from 'material-ui-popup-state';
 import Card from '@material-ui/core/Card';
 import Title from '../Title/Title';
 import IconByName from '../Image/IconByName';
+import { skillType } from '../AppProps';
 
 const iconSize = '5em';
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +70,11 @@ const SkillItem = ({ skill }) => {
       {(popupState) => (
         <Col>
           <Card className={classes.cards} {...bindHover(popupState)}>
-            <IconByName iconName={skill.logo.toUpperCase()} size={iconSize} color={skill.iconColor} />
+            <IconByName
+              iconName={skill.logo.toUpperCase()}
+              size={iconSize}
+              color={skill.iconColor}
+            />
             <Typography variant="subtitle1">{skill.name}</Typography>
           </Card>
           <Popover
@@ -95,6 +100,9 @@ const SkillItem = ({ skill }) => {
     </PopupState>
   );
 };
+SkillItem.propTypes = {
+  skill: skillType,
+}
 const SkillsTabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
