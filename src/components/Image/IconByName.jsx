@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
-import { FaAmazon, FaAws, FaJava } from 'react-icons/fa';
+import { FaAmazon, FaAws, FaJava, FaSwift, FaPython } from 'react-icons/fa';
 import { FiHexagon } from 'react-icons/fi';
 import { SiFlutter, SiAndroid, SiReact } from 'react-icons/si';
+import { GrStackOverflow } from 'react-icons/gr';
+import { CgWebsite } from 'react-icons/cg';
 import { Watson32 } from '@carbon/icons-react';
 import UFIcon from './Icons/UFIcon';
 
@@ -15,9 +17,13 @@ const IconName = {
   FLUTTER: 'FLUTTER',
   ANDROID: 'ANDROID',
   REACT: 'REACT',
+  FS: 'FULL STACK',
   JAVA: 'JAVA',
   CATAN: 'CATAN',
   UF: 'UNIVERSITY OF FLORIDA',
+  WEBDEV: 'WEBDEV',
+  SWIFT: 'SWIFT',
+  PYTHON: 'PYTHON',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -40,6 +46,14 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FiHexagon size={size} color={color} />;
     case IconName.UF:
       return <UFIcon size={size} color={color} />;
+    case IconName.FS:
+      return <GrStackOverflow size={size} color={color} />;
+    case IconName.WEBDEV:
+      return <CgWebsite size={size} color={color} />;
+    case IconName.SWIFT:
+      return <FaSwift size={size} color={color} />;
+    case IconName.PYTHON:
+      return <FaPython size={size} color={color} />;
     case IconName.FLUTTER:
     default: {
       return <SiFlutter size={size} color={color} />;
