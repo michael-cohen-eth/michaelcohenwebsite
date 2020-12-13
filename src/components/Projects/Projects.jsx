@@ -9,25 +9,26 @@ import ProjectImg from '../Image/ProjectImg';
 
 const ProjectItem = (props) => {
   const { isDesktop, isMobile, project } = props;
-  const { title, description, url, repo, img, id } = project;
+  const { name, description, url, repo, img, id } = project;
   return (
     <Row key={id}>
       <Col lg={4} sm={12}>
         <Fade left={isDesktop} bottom={isMobile} duration={1000} delay={500} distance="30px">
           <div className="project-wrapper__text">
-            <h3 className="project-wrapper__text-title">{title}</h3>
+            <h3 className="project-wrapper__text-title">{name}</h3>
             <div>
               <p>{description}</p>
             </div>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cta-btn cta-btn--hero"
-              href={url || '#!'}
-            >
-              See Live
-            </a>
-
+            {url && (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-btn cta-btn--hero"
+                href={url || '#!'}
+              >
+                See Live
+              </a>
+            )}
             {repo && (
               <a
                 target="_blank"
@@ -64,7 +65,7 @@ const ProjectItem = (props) => {
                 }}
               >
                 <div data-tilt className="thumbnail rounded">
-                  <ProjectImg alt={title} filename={img} />
+                  <ProjectImg alt={name} filename={img} />
                 </div>
               </Tilt>
             </a>
@@ -111,23 +112,27 @@ const Projects = () => {
     return map;
   }, {});
   const allProjects = Object.keys(projectsObj).flatMap((key) => projectsObj[key]);
+  // console.log(allProjects);
+  // const allProjectsSorted = allProjects.sort((a, b) => b.order - a.order);
+  // console.log(allProjectsSorted);
   return (
     <section id="projects">
       <Container>
         <div className="project-wrapper">
           <Title title="Projects" />
           {allProjects.map((projectUnwrapped) => {
-
-            return Object.keys(projectUnwrapped).map((projectKey) => {
-              const project = projectUnwrapped[projectKey];
-              return (
-                <ProjectItem
-                  isDesktop={isDesktop}
-                  isMobile={isMobile}
-                  project={project}
-                  key={project.id}
-                />
-              );
+            return Object.keys(projectUnwrapped)
+              .sort((a, b) => projectUnwrapped[b].order - projectUnwrapped[a].order)
+              .map((projectKey) => {
+                const project = projectUnwrapped[projectKey];
+                return (
+                  <ProjectItem
+                    isDesktop={isDesktop}
+                    isMobile={isMobile}
+                    project={project}
+                    key={project.id}
+                  />
+                );
             });
           })}
         </div>

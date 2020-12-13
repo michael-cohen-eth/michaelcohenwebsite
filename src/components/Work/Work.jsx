@@ -10,7 +10,6 @@ import IconByName from '../Image/IconByName';
 import Title from '../Title/Title';
 import { WorkDialog, SchoolDialog } from './ItemDialog';
 import { schoolType, workType } from '../AppProps';
-import { School } from '@material-ui/icons';
 
 const formatProjectDate = (seconds) => {
   const ms = seconds * 1000;
