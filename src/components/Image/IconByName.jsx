@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
-import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from '@meronex/icons/fa';
+import {
+  FaAmazon,
+  FaAws,
+  FaJava,
+  FaSwift,
+  FaPython,
+  FaCoffee,
+  FaDatabase,
+} from '@meronex/icons/fa';
 import MdcHexagonSlice6 from '@meronex/icons/mdc/MdcHexagonSlice6';
-import { SiFlutter, SiAndroid, SiReact, SiGatsby, SiFirebase } from '@meronex/icons/si';
+import { SiFlutter, SiAndroid, SiReact, SiGatsby, SiFirebase, SiRedux } from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
+import MdcFileDocumentOutline from '@meronex/icons/mdc/MdcFileDocumentOutline';
 import { CgWebsite } from '@meronex/icons/cg';
 import { Watson32 } from '@carbon/icons-react';
 import UFIcon from './Icons/UFIcon';
@@ -27,6 +36,9 @@ const IconName = {
   COFFEE: 'COFFEE',
   GATSBY: 'GATSBY',
   FIREBASE: 'FIREBASE',
+  REDUX: 'REDUX',
+  SQL: 'SQL',
+  NOSQL: 'NOSQL',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -37,6 +49,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaAmazon size={size} color={color} />;
     case IconName.AWS:
       return <FaAws size={size} color={color} />;
+    case IconName.SQL:
+      return <FaDatabase size={size} color={color} />;
     case IconName.IBM:
       return <Watson32 color="#ffffff" />;
     case IconName.ANDROID:
@@ -47,6 +61,10 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <SiGatsby size={size} color={color} />;
     case IconName.FIREBASE:
       return <SiFirebase size={size} color={color} />;
+    case IconName.REDUX:
+      return <SiRedux size={size} color={color} />;
+    case IconName.NOSQL:
+      return <MdcFileDocumentOutline size={size} color={color} />;
     case IconName.JAVA:
       return <FaJava size={size} color={color} />;
     case IconName.CATAN:
