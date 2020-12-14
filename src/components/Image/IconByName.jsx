@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
 import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from '@meronex/icons/fa';
 import { GiHexes } from '@meronex/icons/gi';
-import { SiFlutter, SiAndroid, SiReact } from '@meronex/icons/si';
+import { SiFlutter, SiAndroid, SiReact, SiGatsby, SiFirebase } from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
 import { CgWebsite } from '@meronex/icons/cg';
 import { Watson32 } from '@carbon/icons-react';
@@ -25,6 +25,8 @@ const IconName = {
   SWIFT: 'SWIFT',
   PYTHON: 'PYTHON',
   COFFEE: 'COFFEE',
+  GATSBY: 'GATSBY',
+  FIREBASE: 'FIREBASE',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -41,6 +43,10 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <SiAndroid size={size} color={color} />;
     case IconName.REACT:
       return <SiReact size={size} color={color} />;
+    case IconName.GATSBY:
+      return <SiGatsby size={size} color={color} />;
+    case IconName.FIREBASE:
+      return <SiFirebase size={size} color={color} />;
     case IconName.JAVA:
       return <FaJava size={size} color={color} />;
     case IconName.CATAN:
