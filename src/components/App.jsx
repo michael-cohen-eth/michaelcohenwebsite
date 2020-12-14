@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import firebase from 'gatsby-plugin-firebase';
 import useSticky from '../hooks/useSticky.js';
 import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
@@ -57,6 +58,11 @@ const App = ({ data }) => {
     setProjects([...projectsData]);
     setContact({ ...contactData });
     setFooter({ ...footerData });
+
+    if (!firebase) {
+      return;
+    }
+    firebase.analytics().logEvent('page_visit');
   }, []);
 
   // TODO: Add 'Home' empty component for anchoring
