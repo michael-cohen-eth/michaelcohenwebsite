@@ -1,11 +1,13 @@
 #skills {
   background-color: $white-color;
-  color: $dark-blue-text;
-  -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 80%, 0 100%);
-  clip-path: polygon(0 10vh, 100% 0, 100% 100%, 0 100%);
+  background-image: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $white-color;
+
+  -webkit-clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
   margin-top: -15rem;
   padding-top: 15rem;
-  padding-bottom: 15rem;
+  padding-bottom: 25rem;
 
   @include respond(tab-land) {
     margin-top: 0;

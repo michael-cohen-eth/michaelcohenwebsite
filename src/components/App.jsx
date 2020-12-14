@@ -67,8 +67,8 @@ const App = ({ data }) => {
         <Navigation navigationData={navigationData} sticky={isSticky} />
         <Hero stickyAnchor={stickyAnchor} />
         <About />
-        <Skills />
         <Work />
+        <Skills />
         <Projects />
         <Contact />
         <Footer />
