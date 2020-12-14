@@ -46,6 +46,15 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-crisp-chat',
+      options: {
+        websiteId: '17bf6a78-5a2c-4994-b6bd-f3687bf86540',
+        enableDuringDevelop: true,
+        defer: true,
+        enableImprovedAccessibility: false,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-firebase',
       options: {
         credentials: {
