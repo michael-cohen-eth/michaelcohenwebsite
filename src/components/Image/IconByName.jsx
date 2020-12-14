@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
-import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from 'react-icons/fa';
-import { FiHexagon } from 'react-icons/fi';
-import { GiHexes } from 'react-icons/gi';
-import { SiFlutter, SiAndroid, SiReact } from 'react-icons/si';
-import { GrStackOverflow } from 'react-icons/gr';
-import { CgWebsite } from 'react-icons/cg';
+import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from '@meronex/icons/fa';
+import { GiHexes } from '@meronex/icons/gi';
+import { SiFlutter, SiAndroid, SiReact } from '@meronex/icons/si';
+import { GrStackOverflow } from '@meronex/icons/gr';
+import { CgWebsite } from '@meronex/icons/cg';
 import { Watson32 } from '@carbon/icons-react';
 import UFIcon from './Icons/UFIcon';
 
