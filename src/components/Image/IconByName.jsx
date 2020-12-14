@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconResearchAudience from '@rhiza/nielsen-icons/react-icons/research-audience';
 import { FaAmazon, FaAws, FaJava, FaSwift, FaPython, FaCoffee } from '@meronex/icons/fa';
-import { GiHexes } from '@meronex/icons/gi';
+import MdcHexagonSlice6 from '@meronex/icons/mdc/MdcHexagonSlice6';
 import { SiFlutter, SiAndroid, SiReact, SiGatsby, SiFirebase } from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
 import { CgWebsite } from '@meronex/icons/cg';
@@ -50,7 +50,7 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
     case IconName.JAVA:
       return <FaJava size={size} color={color} />;
     case IconName.CATAN:
-      return <GiHexes size={size} color={color} />;
+      return <MdcHexagonSlice6 size={size} color={color} />;
     case IconName.UF:
       return <UFIcon size={size} color={color} />;
     case IconName.FS:
