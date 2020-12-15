@@ -62,7 +62,15 @@ const App = ({ data }) => {
     if (!firebase) {
       return;
     }
-    firebase.analytics().logEvent('page_visit');
+    if (!process.env) {
+      firebase.analytics.logEvent('page_visit', {
+        branch: 'Not available',
+      });
+      return;
+    }
+    firebase.analytics().logEvent('page_visit', {
+      branch: `${process.env.BRANCH}`,
+    });
   }, []);
 
   // TODO: Add 'Home' empty component for anchoring
