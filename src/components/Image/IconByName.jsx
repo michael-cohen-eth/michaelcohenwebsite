@@ -11,7 +11,15 @@ import {
   FaDatabase,
 } from '@meronex/icons/fa';
 import MdcHexagonSlice6 from '@meronex/icons/mdc/MdcHexagonSlice6';
-import { SiFlutter, SiAndroid, SiReact, SiGatsby, SiFirebase, SiRedux } from '@meronex/icons/si';
+import {
+  SiFlutter,
+  SiAndroid,
+  SiReact,
+  SiGatsby,
+  SiFirebase,
+  SiRedux,
+  SiShopify,
+} from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
 import MdcFileDocumentOutline from '@meronex/icons/mdc/MdcFileDocumentOutline';
 import { CgWebsite } from '@meronex/icons/cg';
@@ -39,6 +47,7 @@ const IconName = {
   REDUX: 'REDUX',
   SQL: 'SQL',
   NOSQL: 'NOSQL',
+  SHOPIFY: 'SHOPIFY',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -63,6 +72,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <SiFirebase size={size} color={color} />;
     case IconName.REDUX:
       return <SiRedux size={size} color={color} />;
+    case IconName.SHOPIFY:
+      return <SiShopify size={size} color={color} />;
     case IconName.NOSQL:
       return <MdcFileDocumentOutline size={size} color={color} />;
     case IconName.JAVA:
