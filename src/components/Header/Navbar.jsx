@@ -30,9 +30,6 @@ const Navigation = ({ navigationData, sticky = false }) => {
 
   const navPrefix = 'nav-item-';
   const listBuilder = headers.map((headerText) => {
-    if (process.env.BRANCH !== 'services-section' && headerText === 'services') {
-      return <span key={`${navPrefix}${headerText}`} />;
-    }
     return (
       <li className="nav-item col" key={`${navPrefix}${headerText}`}>
         <Link
