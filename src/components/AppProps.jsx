@@ -37,3 +37,9 @@ export const skillType = PropTypes.shape({
   iconColor: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 });
+
+export const serviceType = PropTypes.shape({
+  service: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+});

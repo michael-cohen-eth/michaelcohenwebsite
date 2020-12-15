@@ -7,6 +7,7 @@ import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
 import About from './About/About';
 import Skills from './Skills/Skills';
+import Services from './Services/Services';
 import Projects from './Projects/Projects';
 import Work from './Work/Work';
 import Contact from './Contact/Contact';
@@ -73,6 +74,7 @@ const App = ({ data }) => {
         <Navigation navigationData={navigationData} sticky={isSticky} />
         <Hero stickyAnchor={stickyAnchor} />
         <About />
+        <Services />
         <Work />
         <Skills />
         <Projects />

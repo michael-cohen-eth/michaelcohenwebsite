@@ -18,22 +18,21 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     minHeight: '40em',
-    backgroundColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.paper,
     display: 'flex',
   },
   tabs: {
-    borderRight: `1px solid ${theme.palette.background.paper}`,
+    borderRight: `1px solid ${theme.palette.divider}`,
     '&$selected': {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.divider,
       fontWeight: theme.typography.fontWeightMedium,
     },
     '&:focus': {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.divider,
     },
   },
   indicator: {
     width: '10px',
-    backgroundColor: theme.palette.background.paper,
   },
   popover: {
     pointerEvents: 'none',
@@ -58,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     [theme.breakpoints.up('lg')]: {
       '&:hover': {
-        borderRight: `10px solid ${theme.palette.background.paper}`,
+        borderRight: `10px solid ${theme.palette.divider}`,
       },
     },
   },

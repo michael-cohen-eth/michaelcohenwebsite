@@ -1,8 +1,9 @@
 #projects {
-  background-color: $white-color;
+  // background-color: $white-color;
+  background-image: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
   -webkit-clip-path: polygon(0 15vh, 100% 0, 100% 80%, 0 100%);
   clip-path: polygon(0 15vh, 100% 0, 100% 100%, 0 100%);
-  color: $dark-blue-text;
+  color: $white-color;
   margin-top: -25rem;
   padding-top: 25rem;
   padding-bottom: 10rem;
@@ -15,6 +16,22 @@
     height: 100%;
     -webkit-clip-path: none;
     clip-path: none;
+  }
+
+  .text-color-main {
+    background-image: linear-gradient(135deg, $white-color 0%, $white-color 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    // Responsive text purple style
+    @include respond(phone) {
+      background-image: none;
+      -webkit-text-fill-color: $white-color;
+    }
+
+    &:hover {
+      transform: translateX(2px);
+    }
   }
 
   .project-wrapper {
