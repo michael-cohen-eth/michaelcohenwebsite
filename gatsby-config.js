@@ -40,7 +40,7 @@ module.exports = {
         short_name: `Michael Cohen`,
         start_url: `/`,
         background_color: `#f7f8f9`,
-        theme_color: `#C38D9E`,
+        theme_color: `#97ce8a`,
         display: `standalone`,
         icon: 'src/images/favicon.png',
       },
@@ -65,7 +65,7 @@ module.exports = {
           storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
           messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
           appId: process.env.FIREBASE_APP_ID,
-          measurementId: process.env.FIREBASE_MEASUREMENT_ID
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID,
         },
       },
     },

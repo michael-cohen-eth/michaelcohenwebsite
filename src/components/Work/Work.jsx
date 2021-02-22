@@ -45,7 +45,7 @@ const WorkItem = ({ item }) => {
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
       textClassName="work-item"
-      contentArrowStyle={{ borderRight: '7px solid  #C38D9E' }}
+      contentArrowStyle={{ borderRight: '7px solid  #97ce8a' }}
       date={dateStr}
       dateClassName="date"
       iconStyle={iconStyle}
@@ -71,7 +71,7 @@ const WorkItem = ({ item }) => {
 };
 
 WorkItem.propTypes = {
-  item: PropTypes.oneOfType([workType, schoolType])
+  item: PropTypes.oneOfType([workType, schoolType]),
 };
 
 const WorkTimeline = ({ workItems, animate }) => {
@@ -127,7 +127,7 @@ const Work = ({ workData = [] }) => {
         {!loading && (
           <div className="work-wrapper">
             <Title title="Work" />
-            <WorkTimeline workItems={work} animate={!isMobile}/>
+            <WorkTimeline workItems={work} animate={!isMobile} />
           </div>
         )}
       </Container>

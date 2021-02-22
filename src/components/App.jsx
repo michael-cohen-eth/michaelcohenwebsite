@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import firebase from 'gatsby-plugin-firebase';
-import useSticky from '../hooks/useSticky.js';
+import useSticky from '../hooks/useSticky';
 import Navigation from './Header/Navbar';
 import Hero from './Hero/Hero';
 import About from './About/About';
@@ -28,9 +28,9 @@ const myTheme = createMuiTheme({
     background: {
       paper: '#f7f8f9',
     },
-    divider: '#C38D9E',
+    divider: '#97ce8a',
     primary: {
-      main: '#C38D9E',
+      main: '#97ce8a',
     },
   },
 });
