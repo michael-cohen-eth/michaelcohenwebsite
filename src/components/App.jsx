@@ -62,24 +62,20 @@ const App = ({ data }) => {
     if (!firebase) {
       return;
     }
-    let greetingSubject;
     if (typeof window !== `undefined`) {
       const { search } = window.location;
       const params = new URLSearchParams(search);
-      greetingSubject = params.get('greet') ? params.get('greet') : '';
-    } else {
-      greetingSubject = '';
+      const greetingSubject = params.get('greet') ? params.get('greet') : '';
+      firebase.analytics().setUserProperties({ greeted: greetingSubject });
     }
     if (!process.env) {
       firebase.analytics.logEvent('page_visit', {
         branch: 'Not available',
-        greeted: greetingSubject,
       });
       return;
     }
     firebase.analytics().logEvent('page_visit', {
       branch: `${process.env.BRANCH}`,
-      greeted: greetingSubject,
     });
   }, []);
 
