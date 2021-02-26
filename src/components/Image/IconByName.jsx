@@ -9,6 +9,7 @@ import {
   FaPython,
   FaCoffee,
   FaDatabase,
+  FaEthereum,
 } from '@meronex/icons/fa';
 import MdcHexagonSlice6 from '@meronex/icons/mdc/MdcHexagonSlice6';
 import {
@@ -48,6 +49,7 @@ const IconName = {
   SQL: 'SQL',
   NOSQL: 'NOSQL',
   SHOPIFY: 'SHOPIFY',
+  CRYPTO: 'CRYPTO',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -92,6 +94,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaPython size={size} color={color} />;
     case IconName.COFFEE:
       return <FaCoffee size={size} color={color} />;
+    case IconName.CRYPTO:
+      return <FaEthereum size={size} color={color} />;
     case IconName.FLUTTER:
     default: {
       return <SiFlutter size={size} color={color} />;
