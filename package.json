@@ -17,6 +17,7 @@
     "@carbon/icons-react": "^10.22.0",
     "@material-ui/core": "^4.11.2",
     "@meronex/icons": "^4.0.0",
+    "@nfte/react": "^1.0.3",
     "@rhiza/nielsen-icons": "0.0.1",
     "bootstrap": "^4.5.0",
     "firebase": "^7.24.0",

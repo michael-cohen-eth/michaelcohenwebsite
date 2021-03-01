@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
@@ -16,7 +17,7 @@ export default ({ data }) => {
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <title>{title}</title>
         <html lang={lang} />
-        <meta name="description" content={description || 'Gatsby Simplefolio'} />
+        <meta name="description" content={description} />
       </Helmet>
       <App data={data} />
     </>

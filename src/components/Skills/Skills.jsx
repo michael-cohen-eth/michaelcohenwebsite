@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
 import firebase from 'gatsby-plugin-firebase';
 import PropTypes from 'prop-types';
@@ -101,9 +102,11 @@ const SkillItem = ({ skill }) => {
     </PopupState>
   );
 };
+
 SkillItem.propTypes = {
   skill: skillType,
-}
+};
+
 const SkillsTabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
@@ -146,7 +149,7 @@ const SkillsTabs = ({ skillsCollection }) => {
   };
 
   const skillsObj = skillsCollection.reduce((map, obj) => {
-    Object.keys(obj).forEach(skillTree => {
+    Object.keys(obj).forEach((skillTree) => {
       map[skillTree] = obj[skillTree];
     });
     return map;
@@ -159,7 +162,9 @@ const SkillsTabs = ({ skillsCollection }) => {
   const allTabPanel = (
     <SkillsTabPanel value={value} index={0} key="allSkillsTab">
       {allSkills.map((skillUnwrapped) => {
-        return Object.keys(skillUnwrapped).map(skillKey => <SkillItem skill={skillUnwrapped[skillKey]} key={skillKey} />);
+        return Object.keys(skillUnwrapped).map((skillKey) => (
+          <SkillItem skill={skillUnwrapped[skillKey]} key={skillKey} />
+        ));
       })}
     </SkillsTabPanel>
   );
@@ -196,29 +201,21 @@ const SkillsTabs = ({ skillsCollection }) => {
   );
 };
 
+SkillsTabs.propTypes = {
+  skillsCollection: PropTypes.shape,
+};
+
 const Skills = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [skillsCollections, setSkillsCollections] = useState([]);
 
   useEffect(() => {
-    if (window.innerWidth > 769) {
-      setIsDesktop(true);
-      setIsMobile(false);
-    } else {
-      setIsMobile(true);
-      setIsDesktop(false);
-    }
     firebase
       .firestore()
       .collection('skills')
       .get()
       .then((snapshot) => {
         snapshot.forEach((newCollection) => {
-          setSkillsCollections((skillsCollections) => [
-            ...skillsCollections,
-            { [newCollection.id]: newCollection.data() },
-          ]);
+          setSkillsCollections((s) => [...s, { [newCollection.id]: newCollection.data() }]);
         });
       });
   }, []);

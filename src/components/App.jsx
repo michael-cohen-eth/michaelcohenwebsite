@@ -8,6 +8,7 @@ import Hero from './Hero/Hero';
 import About from './About/About';
 import Skills from './Skills/Skills';
 import Projects from './Projects/Projects';
+import Gallery from './Gallery/Gallery';
 import Work from './Work/Work';
 import Contact from './Contact/Contact';
 import Footer from './Footer/Footer';
@@ -38,7 +39,6 @@ const myTheme = createMuiTheme({
 const App = ({ data }) => {
   const [hero, setHero] = useState({});
   const [about, setAbout] = useState({});
-  const [projects, setProjects] = useState([]);
   const [contact, setContact] = useState({});
   const [footer, setFooter] = useState({});
   const { isSticky, stickyAnchor } = useSticky();
@@ -48,14 +48,12 @@ const App = ({ data }) => {
   const navigationData = portfolio.navigation;
   const heroData = portfolio.hero;
   const aboutData = portfolio.about;
-  const projectsData = portfolio.projects;
   const contactData = portfolio.contact;
   const footerData = portfolio.footer;
 
   useEffect(() => {
     setHero({ ...heroData });
     setAbout({ ...aboutData });
-    setProjects([...projectsData]);
     setContact({ ...contactData });
     setFooter({ ...footerData });
 
@@ -82,7 +80,7 @@ const App = ({ data }) => {
   // TODO: Add 'Home' empty component for anchoring
   return (
     <MuiThemeProvider theme={myTheme}>
-      <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
+      <PortfolioProvider value={{ hero, about, contact, footer }}>
         <span id="home" />
         <Navigation navigationData={navigationData} sticky={isSticky} />
         <Hero stickyAnchor={stickyAnchor} />
@@ -90,6 +88,7 @@ const App = ({ data }) => {
         <Work />
         <Skills />
         <Projects />
+        <Gallery />
         <Contact />
         <Footer />
       </PortfolioProvider>

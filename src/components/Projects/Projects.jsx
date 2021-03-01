@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+/* eslint-disable no-param-reassign */
+import React, { useEffect, useState } from 'react';
 import firebase from 'gatsby-plugin-firebase';
+import PropTypes from 'prop-types';
 import Fade from 'react-reveal/Fade';
 import Tilt from 'react-tilt';
 import { Container, Row, Col } from 'react-bootstrap';
-import PortfolioContext from '../../context/context';
 import Title from '../Title/Title';
 import ProjectImg from '../Image/ProjectImg';
+import { projectType } from '../AppProps';
 
 const ProjectItem = (props) => {
   const { isDesktop, isMobile, project } = props;
@@ -76,9 +78,13 @@ const ProjectItem = (props) => {
   );
 };
 
-const Projects = () => {
-  const { projects } = useContext(PortfolioContext);
+ProjectItem.propTypes = {
+  isDesktop: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  project: projectType,
+};
 
+const Projects = () => {
   const [projectsCollection, setProjectsCollection] = useState([]);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -97,24 +103,18 @@ const Projects = () => {
       .get()
       .then((snapshot) => {
         snapshot.forEach((project) => {
-          setProjectsCollection((projectsCollection) => [
-            ...projectsCollection,
-            { [project.id]: project.data() },
-          ]);
+          setProjectsCollection((p) => [...p, { [project.id]: project.data() }]);
         });
       });
   }, []);
 
   const projectsObj = projectsCollection.reduce((map, obj) => {
-    Object.keys(obj).forEach(projectTree => {
+    Object.keys(obj).forEach((projectTree) => {
       map[projectTree] = obj[projectTree];
     });
     return map;
   }, {});
   const allProjects = Object.keys(projectsObj).flatMap((key) => projectsObj[key]);
-  // console.log(allProjects);
-  // const allProjectsSorted = allProjects.sort((a, b) => b.order - a.order);
-  // console.log(allProjectsSorted);
   return (
     <section id="projects">
       <Container>
@@ -133,7 +133,7 @@ const Projects = () => {
                     key={project.id}
                   />
                 );
-            });
+              });
           })}
         </div>
       </Container>
