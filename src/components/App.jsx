@@ -65,6 +65,9 @@ const App = ({ data }) => {
       const params = new URLSearchParams(search);
       const greetingSubject = params.get('greet') ? params.get('greet') : '';
       firebase.analytics().setUserProperties({ greeted: greetingSubject });
+      firebase.analytics.logEvent('greets', {
+        greeted: greetingSubject,
+      });
     }
     if (!process.env) {
       firebase.analytics.logEvent('page_visit', {
