@@ -109,6 +109,9 @@
   @include respond(phone) {
     background-image: none;
     -webkit-text-fill-color: $secondary-color;
+    flex: 1;
+    flex-wrap: 'wrap';
+    flex-shrink: 1;
   }
 
   &:hover {
