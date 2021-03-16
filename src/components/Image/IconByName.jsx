@@ -20,6 +20,7 @@ import {
   SiFirebase,
   SiRedux,
   SiShopify,
+  SiTypescript,
 } from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
 import MdcFileDocumentOutline from '@meronex/icons/mdc/MdcFileDocumentOutline';
@@ -50,6 +51,7 @@ const IconName = {
   NOSQL: 'NOSQL',
   SHOPIFY: 'SHOPIFY',
   CRYPTO: 'CRYPTO',
+  TYPESCRIPT: 'TYPESCRIPT',
 };
 
 const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
@@ -96,6 +98,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaCoffee size={size} color={color} />;
     case IconName.CRYPTO:
       return <FaEthereum size={size} color={color} />;
+    case IconName.TYPESCRIPT:
+      return <SiTypescript size={size} color={color} />;
     case IconName.FLUTTER:
     default: {
       return <SiFlutter size={size} color={color} />;
