@@ -38,7 +38,6 @@
       height: 100%;
       justify-content: center;
       flex-direction: column;
-      text-indent: 30px;
       @include respond(phone) {
         align-items: center;
       }
@@ -46,6 +45,9 @@
       &-text {
         text-align: left;
 
+        &-paragraph {
+          text-indent: 2em;
+        }
         @include respond(tab-port) {
           font-size: 1.5rem;
           text-align: center;
