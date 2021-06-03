@@ -20,6 +20,7 @@ import {
   SiFirebase,
   SiRedux,
   SiShopify,
+  SiGraphql,
   SiTypescript,
 } from '@meronex/icons/si';
 import { GrStackOverflow } from '@meronex/icons/gr';
@@ -27,6 +28,7 @@ import MdcFileDocumentOutline from '@meronex/icons/mdc/MdcFileDocumentOutline';
 import { CgWebsite } from '@meronex/icons/cg';
 import { Watson32 } from '@carbon/icons-react';
 import UFIcon from './Icons/UFIcon';
+import OpenSeaIcon from './Icons/OpenSeaIcon';
 
 const IconName = {
   AMAZON: 'AMAZON',
@@ -40,6 +42,7 @@ const IconName = {
   JAVA: 'JAVA',
   CATAN: 'CATAN',
   UF: 'UNIVERSITY OF FLORIDA',
+  OPENSEA: 'OPENSEA',
   WEBDEV: 'WEBDEV',
   SWIFT: 'SWIFT',
   PYTHON: 'PYTHON',
@@ -48,6 +51,7 @@ const IconName = {
   FIREBASE: 'FIREBASE',
   REDUX: 'REDUX',
   SQL: 'SQL',
+  GRAPHQL: 'GRAPHQL',
   NOSQL: 'NOSQL',
   SHOPIFY: 'SHOPIFY',
   CRYPTO: 'CRYPTO',
@@ -64,6 +68,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <FaAws size={size} color={color} />;
     case IconName.SQL:
       return <FaDatabase size={size} color={color} />;
+    case IconName.GRAPHQL:
+      return <SiGraphql size={size} color={color} />;
     case IconName.IBM:
       return <Watson32 color="#ffffff" />;
     case IconName.ANDROID:
@@ -86,6 +92,8 @@ const IconByName = ({ iconName, size = '5em', color = '#333333' }) => {
       return <MdcHexagonSlice6 size={size} color={color} />;
     case IconName.UF:
       return <UFIcon size={size} color={color} />;
+    case IconName.OPENSEA:
+      return <OpenSeaIcon size={size} color={color} />;
     case IconName.FS:
       return <GrStackOverflow size={size} color={color} />;
     case IconName.WEBDEV:

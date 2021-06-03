@@ -40,7 +40,14 @@ const WorkItem = ({ item }) => {
     color: '#333333',
   };
   const title = item.company ? item.company : item.college;
-  const subtitle = item.team ? item.team : `${item.major}, ${item.minor}`;
+  let subtitle;
+  if (item.team !== '') {
+    subtitle = item.team;
+  } else if (item.college) {
+    subtitle = `${item.major}, ${item.minor}`;
+  } else {
+    subtitle = item.role;
+  }
   return (
     <VerticalTimelineElement
       className="vertical-timeline-element--work"
