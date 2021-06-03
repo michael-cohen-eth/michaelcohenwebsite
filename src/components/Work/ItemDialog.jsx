@@ -50,8 +50,8 @@ export const WorkDialog = (props) => {
   };
 
   const title = item.company;
-  const subtitle = item.team;
-  const subtitle1 = item.role;
+  const subtitle = item.team !== '' ? item.team : item.role;
+  const subtitle1 = item.role !== subtitle ? item.role : '';
   return (
     <Dialog aria-labelledby="simple-dialog-title" open={open} onClose={handleClose}>
       <DialogTitle disableTypography>
