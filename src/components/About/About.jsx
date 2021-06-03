@@ -8,7 +8,7 @@ import Title from '../Title/Title';
 import AboutImg from '../Image/AboutImg';
 import Loading from '../Utils/Loading';
 
-const About = ({ stickyAnchor }) => {
+const About = () => {
   const resumeInfo = useStaticQuery(graphql`
     {
       allFile(filter: { extension: { eq: "pdf" } }) {
@@ -67,9 +67,11 @@ const About = ({ stickyAnchor }) => {
                   <Typography variant="h5" className="about-wrapper__info-text">
                     {about.paragraphOne}
                   </Typography>
+                  <br />
                   <Typography variant="h5" className="about-wrapper__info-text">
                     {about.paragraphTwo}
                   </Typography>
+                  <br />
                   <Typography variant="h5" className="about-wrapper__info-text">
                     {about.paragraphThree}
                   </Typography>
