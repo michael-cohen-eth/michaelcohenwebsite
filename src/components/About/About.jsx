@@ -87,7 +87,7 @@ const About = () => {
                       className="cta-btn cta-btn--resume"
                       href={resumeInfo.node.publicURL}
                     >
-                      my resume.pdf
+                      read on at resume.pdf
                     </a>
                   </span>
                 </div>

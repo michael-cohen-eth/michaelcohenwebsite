@@ -8,7 +8,7 @@ import Hero from './Hero/Hero';
 import About from './About/About';
 import Skills from './Skills/Skills';
 import Projects from './Projects/Projects';
-import Gallery from './Gallery/Gallery';
+// import Gallery from './Gallery/Gallery';
 import Work from './Work/Work';
 import Contact from './Contact/Contact';
 import Footer from './Footer/Footer';
@@ -91,7 +91,7 @@ const App = ({ data }) => {
         <Work />
         <Skills />
         <Projects />
-        <Gallery />
+        {/* <Gallery /> */}
         <Contact />
         <Footer />
       </PortfolioProvider>
