@@ -78,7 +78,7 @@ const About = () => {
                   <br />
                   <br />
                   <Typography variant="h5" className="about-wrapper__info-text">
-                    are you more oldschool?
+                    are you more oldschool? read on at
                   </Typography>
                   <span className="d-flex mt-3">
                     <a
@@ -87,7 +87,7 @@ const About = () => {
                       className="cta-btn cta-btn--resume"
                       href={resumeInfo.node.publicURL}
                     >
-                      read on at resume.pdf
+                      resume.pdf
                     </a>
                   </span>
                 </div>
